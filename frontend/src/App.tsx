@@ -33,8 +33,10 @@ type Document = {
   page_count: number
   chunk_count: number
   processed_at: string
-  pdf_url: string
+  pdf_url: string | null
   source_available: boolean
+  file_size_bytes: number | null
+  ocr_used: boolean
 }
 
 type Citation = {
@@ -92,7 +94,28 @@ type Message = {
 type HealthResponse = {
   status: string
   answer_mode: string
+  database_status: string
+  reranker_available: boolean
+  llm: {
+    configured: boolean
+    available: boolean
+    status: string
+  }
 }
+
+type StatusResponse = {
+  backend: string
+  database_status: string
+  database_path: string
+  document_storage: string
+  document_count: number
+  chunk_count: number
+  embedding_count: number
+  reranker_available: boolean
+  llm: HealthResponse['llm'] & { model_repo: string; model_file: string }
+}
+
+type WorkspaceView = 'workspace' | 'library' | 'settings'
 
 async function requestJson<T>(url: string, init?: RequestInit): Promise<T> {
   const response = await fetch(url, init)
@@ -109,10 +132,11 @@ async function requestJson<T>(url: string, init?: RequestInit): Promise<T> {
   return (await response.json()) as T
 }
 
-function loadWorkspace(): Promise<[HealthResponse, Document[]]> {
+function loadWorkspace(): Promise<[HealthResponse, Document[], StatusResponse]> {
   return Promise.all([
     requestJson<HealthResponse>('/api/health'),
     requestJson<Document[]>('/api/documents'),
+    requestJson<StatusResponse>('/api/status'),
   ])
 }
 
@@ -122,9 +146,15 @@ function citationLabel(citation: Citation) {
 
 function App() {
   const [documents, setDocuments] = useState<Document[]>([])
+  const [status, setStatus] = useState<StatusResponse | null>(null)
+  const [health, setHealth] = useState<HealthResponse | null>(null)
+  const [workspaceView, setWorkspaceView] = useState<WorkspaceView>('workspace')
   const [messages, setMessages] = useState<Message[]>([])
   const [question, setQuestion] = useState('')
   const [searchMode, setSearchMode] = useState<SearchMode>('hybrid')
+  const [topK, setTopK] = useState(5)
+  const [candidateK, setCandidateK] = useState(20)
+  const [dragging, setDragging] = useState(false)
   const [backendOnline, setBackendOnline] = useState<boolean | null>(null)
   const [loadingDocuments, setLoadingDocuments] = useState(true)
   const [uploading, setUploading] = useState(false)
@@ -137,9 +167,11 @@ function App() {
 
   const refreshDocuments = useCallback(async () => {
     try {
-      const [health, indexedDocuments] = await loadWorkspace()
+      const [healthResult, indexedDocuments, statusResult] = await loadWorkspace()
       setDocuments(indexedDocuments)
-      setBackendOnline(health.status === 'ok')
+      setStatus(statusResult)
+      setHealth(healthResult)
+      setBackendOnline(healthResult.status === 'ok')
       setError('')
     } catch (loadError) {
       setBackendOnline(false)
@@ -156,10 +188,12 @@ function App() {
   useEffect(() => {
     let active = true
     void loadWorkspace()
-      .then(([health, indexedDocuments]) => {
+      .then(([healthResult, indexedDocuments, statusResult]) => {
         if (!active) return
         setDocuments(indexedDocuments)
-        setBackendOnline(health.status === 'ok')
+        setStatus(statusResult)
+        setHealth(healthResult)
+        setBackendOnline(healthResult.status === 'ok')
       })
       .catch((loadError: unknown) => {
         if (!active) return
@@ -185,10 +219,17 @@ function App() {
   }, [messages, sending])
 
   async function handleUpload(event: FormEvent<HTMLInputElement>) {
-    const file = event.currentTarget.files?.[0]
+    const files = event.currentTarget.files
     event.currentTarget.value = ''
-    if (!file) return
+    if (!files) return
+    await handleDroppedFiles(files)
+  }
 
+  async function uploadFile(file: File) {
+    if (!file.name.toLowerCase().endsWith('.pdf')) {
+      setError('Only PDF files can be added to NEXUS.')
+      return
+    }
     setError('')
     setNotice('')
     setUploading(true)
@@ -213,6 +254,13 @@ function App() {
       )
     } finally {
       setUploading(false)
+    }
+  }
+
+  async function handleDroppedFiles(files: FileList | null) {
+    if (!files || files.length === 0) return
+    for (const file of Array.from(files)) {
+      await uploadFile(file)
     }
   }
 
@@ -276,6 +324,8 @@ function App() {
         body: JSON.stringify({
           question: submittedQuestion,
           search_mode: searchMode,
+          top_k: topK,
+          candidate_k: candidateK,
         }),
       })
       setMessages((current) => [
@@ -322,11 +372,39 @@ function App() {
             setQuestion('')
             setError('')
             setNotice('')
+            setWorkspaceView('workspace')
           }}
         >
           <Plus size={17} />
           <span>New conversation</span>
         </button>
+
+        <nav className="sidebar-nav" aria-label="Primary">
+          <button
+            type="button"
+            className={workspaceView === 'workspace' ? 'active' : ''}
+            onClick={() => setWorkspaceView('workspace')}
+          >
+            <MessageSquareText size={16} />
+            Workspace
+          </button>
+          <button
+            type="button"
+            className={workspaceView === 'library' ? 'active' : ''}
+            onClick={() => setWorkspaceView('library')}
+          >
+            <FolderOpen size={16} />
+            Document library
+          </button>
+          <button
+            type="button"
+            className={workspaceView === 'settings' ? 'active' : ''}
+            onClick={() => setWorkspaceView('settings')}
+          >
+            <ShieldCheck size={16} />
+            Settings
+          </button>
+        </nav>
 
         <div className="sidebar-label">
           <span>Your library</span>
@@ -350,6 +428,7 @@ function App() {
           className="visually-hidden"
           type="file"
           accept="application/pdf,.pdf"
+          multiple
           aria-label="Choose a PDF to add"
           onChange={handleUpload}
         />
@@ -434,7 +513,100 @@ function App() {
         </header>
 
         <section className="conversation" aria-label="Question and answer">
-          {messages.length === 0 ? (
+          {workspaceView !== 'workspace' ? (
+            <div className="management-view">
+              <div className="management-heading">
+                <p className="eyebrow">LOCAL WORKSPACE</p>
+                <h1>{workspaceView === 'library' ? 'Document library' : 'System settings'}</h1>
+              </div>
+              {workspaceView === 'library' ? (
+                <>
+                  <div
+                    className={`upload-zone ${dragging ? 'dragging' : ''}`}
+                    onDragEnter={(event) => {
+                      event.preventDefault()
+                      setDragging(true)
+                    }}
+                    onDragOver={(event) => event.preventDefault()}
+                    onDragLeave={() => setDragging(false)}
+                    onDrop={(event) => {
+                      event.preventDefault()
+                      setDragging(false)
+                      void handleDroppedFiles(event.dataTransfer.files)
+                    }}
+                  >
+                    <Upload size={24} />
+                    <strong>Drop PDF files here</strong>
+                    <span>or</span>
+                    <button type="button" onClick={() => fileInput.current?.click()}>
+                      Browse files
+                    </button>
+                  </div>
+                  <div className="library-grid">
+                    {documents.map((document) => (
+                      <article className="library-card" key={document.sha256}>
+                        <div className="library-card-icon"><FileText size={20} /></div>
+                        <div className="library-card-main">
+                          <strong>{document.filename}</strong>
+                          <span>{document.page_count} pages · {document.chunk_count} chunks</span>
+                          <span>
+                            {document.file_size_bytes
+                              ? `${Math.max(1, Math.round(document.file_size_bytes / 1024))} KiB · `
+                              : ''}
+                            {document.ocr_used ? 'OCR used' : 'Text extraction'}
+                          </span>
+                        </div>
+                        {document.pdf_url && (
+                          <a href={document.pdf_url} target="_blank" rel="noreferrer">Open PDF</a>
+                        )}
+                        <button
+                          type="button"
+                          onClick={() => void handleDelete(document)}
+                          disabled={deletingDocument === document.sha256}
+                        >
+                          {deletingDocument === document.sha256 ? 'Removing…' : 'Delete'}
+                        </button>
+                      </article>
+                    ))}
+                  </div>
+                  {!loadingDocuments && documents.length === 0 && (
+                    <p className="empty-library">No indexed PDFs yet. Upload a PDF to begin.</p>
+                  )}
+                </>
+              ) : (
+                <div className="settings-grid">
+                  <article>
+                    <strong>Database</strong>
+                    <span>{status?.database_status === 'ok' ? 'Connected' : 'Unavailable'}</span>
+                  </article>
+                  <article>
+                    <strong>Retrieval</strong>
+                    <span>Hybrid + optional reranking</span>
+                  </article>
+                  <article>
+                    <strong>Final results</strong>
+                    <span>{topK}</span>
+                  </article>
+                  <article>
+                    <strong>Candidate pool</strong>
+                    <span>{candidateK}</span>
+                  </article>
+                  <article>
+                    <strong>Cross-encoder</strong>
+                    <span>{health?.reranker_available ? 'Available' : 'Unavailable'}</span>
+                  </article>
+                  <article>
+                    <strong>Local model</strong>
+                    <span>{status?.llm.status === 'available' ? 'Configured, not started' : 'Not installed / unavailable'}</span>
+                  </article>
+                  <article className="settings-wide">
+                    <strong>Model configuration</strong>
+                    <span>{status?.llm.model_repo || 'Not available'} / {status?.llm.model_file || ''}</span>
+                  </article>
+                </div>
+              )}
+            </div>
+          ) : messages.length === 0 ? (
             <div className="welcome">
               <div className="welcome-icon">
                 <Sparkles size={22} />
@@ -697,6 +869,34 @@ function App() {
                 Hybrid + reranking
               </button>
             </div>
+            <label className="result-setting">
+              Results
+              <select
+                value={topK}
+                onChange={(event) => setTopK(Number(event.target.value))}
+                aria-label="Final result count"
+              >
+                {[3, 5, 10, 20].map((value) => (
+                  <option value={value} key={value}>{value}</option>
+                ))}
+              </select>
+            </label>
+            <label className="result-setting">
+              Candidates
+              <select
+                value={candidateK}
+                onChange={(event) => {
+                  const next = Number(event.target.value)
+                  setCandidateK(next)
+                  if (topK > next) setTopK(next)
+                }}
+                aria-label="Candidate count"
+              >
+                {[20, 40, 60].map((value) => (
+                  <option value={value} key={value}>{value}</option>
+                ))}
+              </select>
+            </label>
             <span className="local-hint">
               {searchMode === 'hybrid_rerank'
                 ? 'Local reranker uses extra CPU & memory'

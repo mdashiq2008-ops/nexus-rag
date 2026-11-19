@@ -90,9 +90,14 @@ class ApiTests(unittest.TestCase):
     def test_health_and_document_list_are_available(self) -> None:
         health = self.client.get("/api/health")
         documents = self.client.get("/api/documents")
+        status = self.client.get("/api/status")
 
         self.assertEqual(health.status_code, 200)
         self.assertEqual(health.json()["answer_mode"], "extractive")
+        self.assertEqual(status.status_code, 200)
+        self.assertEqual(status.json()["document_count"], 0)
+        self.assertEqual(status.json()["chunk_count"], 0)
+        self.assertIn("llm", status.json())
         self.assertEqual(documents.status_code, 200)
         self.assertEqual(documents.json(), [])
 

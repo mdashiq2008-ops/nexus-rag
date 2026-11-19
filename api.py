@@ -2,14 +2,16 @@ from __future__ import annotations
 
 import hashlib
 import sqlite3
+import shutil
 from contextlib import closing
 from pathlib import Path
 from typing import Literal
 
 from fastapi import FastAPI, File, HTTPException, Query, UploadFile
 from fastapi.concurrency import run_in_threadpool
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, model_validator
 
 import step1
 from document_store import (
@@ -21,6 +23,7 @@ from document_store import (
     open_database,
 )
 from extractive_generator import ExtractiveAnswerGenerator
+from qwen3_llama_cpp import Qwen3LlamaCppConfig
 from rag_pipeline import RagPipelineConfig, run_rag_pipeline
 
 
@@ -31,6 +34,18 @@ SearchMode = Literal["hybrid", "hybrid_rerank"]
 class ChatRequest(BaseModel):
     question: str = Field(min_length=1, max_length=4000)
     search_mode: SearchMode = "hybrid"
+    top_k: int = Field(default=5, ge=1, le=50)
+    candidate_k: int = Field(default=20, ge=1, le=100)
+    max_context_tokens: int = Field(default=2500, ge=256, le=16000)
+    rerank_threads: int = Field(default=2, ge=1, le=16)
+
+    @model_validator(mode="after")
+    def validate_candidate_pool(self) -> "ChatRequest":
+        if self.candidate_k < self.top_k:
+            raise ValueError(
+                "candidate_k must be greater than or equal to top_k"
+            )
+        return self
 
 
 class DocumentResponse(BaseModel):
@@ -41,6 +56,8 @@ class DocumentResponse(BaseModel):
     processed_at: str
     pdf_url: str | None
     source_available: bool
+    file_size_bytes: int | None = None
+    ocr_used: bool = False
 
 
 class UploadResponse(BaseModel):
@@ -134,14 +151,65 @@ def _source_document_id(
     return None
 
 
+def _reranker_available() -> bool:
+    try:
+        from fastembed.rerank.cross_encoder import TextCrossEncoder
+    except ImportError:
+        return False
+    return TextCrossEncoder is not None
+
+
+def _llm_status() -> dict[str, object]:
+    config = Qwen3LlamaCppConfig()
+    configured = str(config.server_executable)
+    resolved = shutil.which(configured)
+    if resolved is None:
+        candidate = Path(configured).expanduser()
+        resolved = str(candidate.resolve()) if candidate.is_file() else None
+    return {
+        "configured": resolved is not None,
+        "available": resolved is not None,
+        "status": "available" if resolved is not None else "not_installed",
+        "mode": "llm_optional",
+        "model_repo": config.model_repo,
+        "model_file": config.model_file,
+    }
+
+
+def _document_status(
+    connection: sqlite3.Connection,
+    document: object,
+) -> tuple[int | None, bool]:
+    source_path = getattr(document, "source_path")
+    file_size = source_path.stat().st_size if source_path.is_file() else None
+    ocr_row = connection.execute(
+        """
+        SELECT EXISTS (
+            SELECT 1 FROM chunks
+            WHERE document_sha256 = ? AND ocr_used = 1
+        )
+        """,
+        (getattr(document, "sha256"),),
+    ).fetchone()
+    return file_size, bool(ocr_row[0]) if ocr_row is not None else False
+
+
 def _chat_response(
     database_path: Path,
     question: str,
     search_mode: SearchMode,
+    top_k: int = 5,
+    candidate_k: int = 20,
+    max_context_tokens: int = 2500,
+    rerank_threads: int = 2,
 ) -> ChatResponse:
     config = RagPipelineConfig(
         database=database_path,
         rerank=search_mode == "hybrid_rerank",
+        top_k=top_k,
+        candidate_k=candidate_k,
+        max_context_tokens=max_context_tokens,
+        rerank_threads=rerank_threads,
     )
     answer = run_rag_pipeline(
         question,
@@ -239,10 +307,56 @@ def create_app(
         description="Local PDF indexing, hybrid retrieval, and extractive answers.",
         version="1.0.0",
     )
+    application.add_middleware(
+        CORSMiddleware,
+        allow_origins=[
+            "http://127.0.0.1:5173",
+            "http://localhost:5173",
+        ],
+        allow_methods=["GET", "POST", "DELETE", "OPTIONS"],
+        allow_headers=["Content-Type"],
+    )
 
     @application.get("/api/health")
-    def health() -> dict[str, str]:
-        return {"status": "ok", "answer_mode": "extractive"}
+    def health() -> dict[str, object]:
+        database_status = "ok"
+        try:
+            with closing(open_database(database_path)) as connection:
+                connection.execute("SELECT 1").fetchone()
+        except (OSError, sqlite3.Error):
+            database_status = "unavailable"
+        llm = _llm_status()
+        return {
+            "status": "ok",
+            "database_status": database_status,
+            "answer_mode": "extractive",
+            "retrieval_mode": "hybrid",
+            "reranker_available": _reranker_available(),
+            "llm": llm,
+        }
+
+    @application.get("/api/status")
+    def status() -> dict[str, object]:
+        with closing(open_database(database_path)) as connection:
+            document_count = connection.execute(
+                "SELECT COUNT(*) FROM documents"
+            ).fetchone()[0]
+            chunk_count = connection.execute(
+                "SELECT COUNT(*) FROM chunks"
+            ).fetchone()[0]
+            embedding_count = connection.execute(
+                "SELECT COUNT(*) FROM chunk_embeddings"
+            ).fetchone()[0]
+        llm = _llm_status()
+        return {
+            "backend": "online",
+            "database_status": "ok",
+            "document_count": document_count,
+            "chunk_count": chunk_count,
+            "embedding_count": embedding_count,
+            "reranker_available": _reranker_available(),
+            "llm": llm,
+        }
 
     @application.get(
         "/api/documents",
@@ -250,22 +364,27 @@ def create_app(
     )
     def get_documents() -> list[DocumentResponse]:
         with closing(open_database(database_path)) as connection:
-            return [
-                DocumentResponse(
-                    sha256=document.sha256,
-                    filename=document.filename,
-                    page_count=document.page_count,
-                    chunk_count=document.chunk_count,
-                    processed_at=document.processed_at,
-                    pdf_url=(
-                        _document_url(document.sha256)
-                        if document.source_path.is_file()
-                        else None
-                    ),
-                    source_available=document.source_path.is_file(),
+            responses = []
+            for document in list_indexed_documents(connection):
+                file_size, ocr_used = _document_status(connection, document)
+                responses.append(
+                    DocumentResponse(
+                        sha256=document.sha256,
+                        filename=document.filename,
+                        page_count=document.page_count,
+                        chunk_count=document.chunk_count,
+                        processed_at=document.processed_at,
+                        pdf_url=(
+                            _document_url(document.sha256)
+                            if document.source_path.is_file()
+                            else None
+                        ),
+                        source_available=document.source_path.is_file(),
+                        file_size_bytes=file_size,
+                        ocr_used=ocr_used,
+                    )
                 )
-                for document in list_indexed_documents(connection)
-            ]
+            return responses
 
     def index_upload(filename: str, content: bytes):
         digest = hashlib.sha256(content).hexdigest()
@@ -340,6 +459,12 @@ def create_app(
                     else None
                 ),
                 source_available=document.source_path.is_file(),
+                file_size_bytes=(
+                    document.source_path.stat().st_size
+                    if document.source_path.is_file()
+                    else None
+                ),
+                ocr_used=False,
             ),
         )
 
@@ -408,6 +533,10 @@ def create_app(
                 database_path,
                 request.question,
                 request.search_mode,
+                request.top_k,
+                request.candidate_k,
+                request.max_context_tokens,
+                request.rerank_threads,
             )
         except (OSError, ValueError, RuntimeError, sqlite3.Error) as exc:
             raise HTTPException(status_code=500, detail=str(exc)) from exc

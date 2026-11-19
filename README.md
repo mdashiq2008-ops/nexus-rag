@@ -1,5 +1,46 @@
 # PDF text ingestion
 
+## NEXUS local application
+
+The React interface is in `frontend/`; the FastAPI backend is in `api.py`.
+The interface provides the workspace, document library, upload/delete actions,
+PDF citation links, hybrid retrieval controls, and system status.
+
+Start the backend:
+
+```powershell
+python -m pip install -r requirements.txt
+python -m uvicorn api:app --host 127.0.0.1 --port 8000
+```
+
+Start the frontend in a second PowerShell:
+
+```powershell
+cd frontend
+npm.cmd install
+npm.cmd run dev
+```
+
+Open `http://localhost:5173`. The API remains bound to `127.0.0.1`.
+
+The `/api/chat` request accepts `question`, `search_mode`, `top_k`,
+`candidate_k`, `max_context_tokens`, and `rerank_threads`. Example:
+
+```json
+{
+  "question": "What are the stages of RAG?",
+  "search_mode": "hybrid_rerank",
+  "top_k": 5,
+  "candidate_k": 20,
+  "max_context_tokens": 2500,
+  "rerank_threads": 2
+}
+```
+
+Use extractive mode without starting a large language model. The optional
+llama.cpp adapter is reported honestly through `/api/health` and `/api/status`
+and is not started automatically.
+
 Install the Python dependencies with `python -m pip install -r requirements.txt`.
 Scanned pages use PyMuPDF OCR and require the Tesseract OCR executable and the
 requested language data to be installed separately and available on `PATH`.
