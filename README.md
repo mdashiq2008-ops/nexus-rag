@@ -2,6 +2,60 @@
 
 ## NEXUS local application
 
+NEXUS RAG is a local-first PDF knowledge platform for indexing, retrieval,
+citation, and evidence-checked answers.
+
+### Prerequisites
+
+- Windows 10 x64 or newer
+- Python 3.11 or 3.13
+- Node.js 20 or newer
+- Optional: Tesseract OCR and OCR language data for scanned PDFs
+- Optional: a compatible CPU build of llama.cpp for real LLM answers
+
+### Verified fresh-install flow
+
+```powershell
+git clone https://github.com/mdashiq2008-ops/nexus-rag.git
+cd nexus-rag
+
+py -m venv .venv
+.\.venv\Scripts\Activate.ps1
+python -m pip install --upgrade pip
+python -m pip install -r requirements.txt
+
+python -m uvicorn api:app --host 127.0.0.1 --port 8000
+```
+
+In a second PowerShell:
+
+```powershell
+cd nexus-rag\frontend
+npm.cmd ci
+npm.cmd run dev -- --host 127.0.0.1 --port 5173
+```
+
+Open `http://127.0.0.1:5173/`. The backend API is available only on
+`127.0.0.1:8000`.
+
+### Example questions
+
+- "What are the three stages of RAG?"
+- "Summarize the key ideas in my documents."
+- "What does the NIST AI RMF say about measurement?"
+- "Compare the recommendations across the uploaded PDFs."
+- "What evidence supports the conclusions on page 2?"
+
+### Interface screenshots
+
+![NEXUS workspace](docs/screenshots/workspace.png)
+
+![Document library](docs/screenshots/library.png)
+
+![System settings](docs/screenshots/settings.png)
+
+![Evidence and PDF citations](docs/screenshots/answer-citations.png)
+
 The React interface is in `frontend/`; the FastAPI backend is in `api.py`.
 The interface provides the workspace, document library, upload/delete actions,
 PDF citation links, hybrid retrieval controls, and system status.
@@ -40,6 +94,20 @@ The `/api/chat` request accepts `question`, `search_mode`, `top_k`,
 Use extractive mode without starting a large language model. The optional
 llama.cpp adapter is reported honestly through `/api/health` and `/api/status`
 and is not started automatically.
+
+### Security
+
+- The API binds to `127.0.0.1` by default and is restricted to local Vite origins.
+- Uploads are limited to 50 MiB and must have a `.pdf` filename and PDF content.
+- Filenames are sanitized; managed files are stored under the configured uploads directory.
+- Document deletion cascades database rows and embeddings and only removes files that
+  resolve inside the managed uploads directory.
+- PDF serving and deletion require a SHA-256 document identifier.
+- PDF content is treated as untrusted evidence and is never executed.
+- No dependency secret or external-provider credential is required for extractive mode.
+
+Fresh dependency checks: `pip-audit` reported no known vulnerabilities and
+`npm audit` reported zero vulnerabilities.
 
 Install the Python dependencies with `python -m pip install -r requirements.txt`.
 Scanned pages use PyMuPDF OCR and require the Tesseract OCR executable and the
@@ -185,6 +253,21 @@ offsets are written to the results JSON.
 
 For regular searches, `--rerank-threads` sets the same ONNX thread count, e.g.
 `--rerank --rerank-threads 2`.
+
+### NEXUS v1.0.0 performance record
+
+Measured on the development Windows computer with the cached
+`Qwen_Qwen3-1.7B-Q4_K_M.gguf` model and CPU inference:
+
+| Operation | Measured time | Peak working set |
+|---|---:|---:|
+| llama-server startup | 65.314 seconds | Part of the run |
+| Answer generation | 35.042 seconds | Part of the run |
+| Full Qwen run | - | 1395.5 MiB |
+
+Startup and answer timing vary with CPU, RAM, thermal conditions, model cache,
+and context size. NEXUS does not start llama.cpp or download the 1.223 GiB
+model during application startup; extractive answers remain available.
 
 ## Context construction
 
