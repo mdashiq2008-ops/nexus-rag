@@ -141,6 +141,7 @@ def ingest_uploaded_pdf(
             destination,
             connection,
             embedder=embedder,
+            filename=filename,
         )
         if result.status == "duplicate" and created_destination:
             destination.unlink()

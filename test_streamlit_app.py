@@ -61,7 +61,7 @@ class StreamlitAppHelpersTests(unittest.TestCase):
         self.assertEqual(result.status, "processed")
         documents = list_indexed_documents(self.connection)
         self.assertEqual(len(documents), 1)
-        self.assertTrue(documents[0].filename.endswith("_document.pdf"))
+        self.assertEqual(documents[0].filename, "document.pdf")
         self.assertTrue(documents[0].source_path.is_file())
         self.assertEqual(
             documents[0].source_path.parent.resolve(),
@@ -96,7 +96,7 @@ class StreamlitAppHelpersTests(unittest.TestCase):
             uploads_directory=self.uploads_directory,
             delete_uploaded_file=False,
         )
-        self.assertTrue(filename.endswith("_document.pdf"))
+        self.assertEqual(filename, "document.pdf")
         self.assertFalse(file_deleted)
         self.assertTrue(source_path.is_file())
         self.assertEqual(
@@ -170,7 +170,7 @@ class StreamlitAppHelpersTests(unittest.TestCase):
             "C1",
             "P1",
             ContextSource(
-                f"{result.sha256}_document.pdf",
+                "document.pdf",
                 1,
                 0,
                 10,

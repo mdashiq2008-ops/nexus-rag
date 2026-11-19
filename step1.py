@@ -758,6 +758,7 @@ def ingest_pdf(
     pdf_path: Path,
     connection: sqlite3.Connection,
     *,
+    filename: str | None = None,
     chunk_size: int = 1000,
     chunk_overlap: int = 150,
     ocr_language: str = "eng",
@@ -819,7 +820,12 @@ def ingest_pdf(
             INSERT INTO documents (sha256, filename, source_path, page_count)
             VALUES (?, ?, ?, ?)
             """,
-            (digest, pdf_path.name, str(pdf_path.resolve()), page_count),
+            (
+                digest,
+                filename or pdf_path.name,
+                str(pdf_path.resolve()),
+                page_count,
+            ),
         )
         connection.executemany(
             """
