@@ -1,0 +1,6 @@
+PyMuPDF>=1.23
+fastembed>=0.9.1,<1
+streamlit>=1.40,<2
+fastapi>=0.115,<1
+uvicorn>=0.30,<1
+python-multipart>=0.0.9

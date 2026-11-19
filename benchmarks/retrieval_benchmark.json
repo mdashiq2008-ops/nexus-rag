@@ -1,0 +1,382 @@
+{
+  "version": 1,
+  "description": "Manually labeled retrieval benchmark. Passage offsets refer to cleaned PDF-page text using the project's default chunking.",
+  "top_k": 5,
+  "candidate_k": 40,
+  "documents": [
+    {
+      "pdf": "4-IntroPython.pdf",
+      "sha256": "1d470db5917f1db6c0ec32d39e505ff8b7fd868b144f79e5df2b54e7178c058c",
+      "pages": 52
+    },
+    {
+      "pdf": "2312.10997v5.pdf",
+      "sha256": "396a0fadeb4cd40f5c8ccc36b73a0815f6cb4d7f6bfa53b6c48c1f9aba7c7e02",
+      "pages": 21
+    },
+    {
+      "pdf": "NIST.AI.100-1.pdf.pdf",
+      "sha256": "7576edb531d9848825814ee88e28b1795d3a84b435b4b797d3670eafdc4a89f1",
+      "pages": 48
+    }
+  ],
+  "questions": [
+    {
+      "id": "py-01",
+      "question": "What is the conventional first program for a new programmer, and what does the example print?",
+      "targets": [
+        {"pdf": "4-IntroPython.pdf", "page": 7, "char_start": 0, "char_end": 498, "grade": 2, "note": "The example introduces a Hello World program."}
+      ]
+    },
+    {
+      "id": "py-02",
+      "question": "How does the example program convert two typed values before adding them?",
+      "targets": [
+        {"pdf": "4-IntroPython.pdf", "page": 13, "char_start": 0, "char_end": 287, "grade": 2, "note": "The input strings are converted to integers before addition."}
+      ]
+    },
+    {
+      "id": "py-03",
+      "question": "When should a Python print string use single quotes versus double quotes?",
+      "targets": [
+        {"pdf": "4-IntroPython.pdf", "page": 23, "char_start": 0, "char_end": 472, "grade": 2, "note": "The examples choose quote style to avoid escaping the other quote type."}
+      ]
+    },
+    {
+      "id": "py-04",
+      "question": "What does input() return, and how is the entered value initially treated?",
+      "targets": [
+        {"pdf": "4-IntroPython.pdf", "page": 24, "char_start": 0, "char_end": 393, "grade": 2, "note": "The return value is text, even when the user types digits."}
+      ]
+    },
+    {
+      "id": "py-05",
+      "question": "What does a variable represent in a Python program?",
+      "targets": [
+        {"pdf": "4-IntroPython.pdf", "page": 25, "char_start": 0, "char_end": 228, "grade": 2, "note": "A variable associates a name with a stored value."}
+      ]
+    },
+    {
+      "id": "py-06",
+      "question": "How is assignment different from mathematical equality, and in what order is an assignment evaluated?",
+      "targets": [
+        {"pdf": "4-IntroPython.pdf", "page": 28, "char_start": 0, "char_end": 642, "grade": 2, "note": "Assignment evaluates the right-hand expression and then stores it under the left-hand name."}
+      ]
+    },
+    {
+      "id": "py-07",
+      "question": "What characters may appear in Python variable names, and are names case-sensitive?",
+      "targets": [
+        {"pdf": "4-IntroPython.pdf", "page": 29, "char_start": 0, "char_end": 462, "grade": 2, "note": "Names have identifier constraints and capitalization distinguishes names."}
+      ]
+    },
+    {
+      "id": "py-08",
+      "question": "How does assigning 700 versus 700.0 affect the type of a Python variable?",
+      "targets": [
+        {"pdf": "4-IntroPython.pdf", "page": 32, "char_start": 0, "char_end": 415, "grade": 2, "note": "An integer literal produces int while a decimal literal produces float."}
+      ]
+    },
+    {
+      "id": "py-09",
+      "question": "Which basic Python types are illustrated, including the type used for True and False?",
+      "targets": [
+        {"pdf": "4-IntroPython.pdf", "page": 33, "char_start": 0, "char_end": 426, "grade": 2, "note": "The slide distinguishes int, float, string, and bool."}
+      ]
+    },
+    {
+      "id": "py-10",
+      "question": "When is float a more appropriate type than int, and when is int appropriate?",
+      "targets": [
+        {"pdf": "4-IntroPython.pdf", "page": 34, "char_start": 0, "char_end": 307, "grade": 2, "note": "Measurements can be fractional, while counting children uses whole numbers."}
+      ]
+    },
+    {
+      "id": "py-11",
+      "question": "How can a program convert a numeric string returned by input into an integer?",
+      "targets": [
+        {"pdf": "4-IntroPython.pdf", "page": 39, "char_start": 0, "char_end": 357, "grade": 2, "note": "The example uses int() to convert the input string."}
+      ]
+    },
+    {
+      "id": "py-12",
+      "question": "How can an integer be included in a string assembled with the + operator?",
+      "targets": [
+        {"pdf": "4-IntroPython.pdf", "page": 46, "char_start": 0, "char_end": 477, "grade": 2, "note": "The example converts the integer with str() before concatenation."}
+      ]
+    },
+    {
+      "id": "py-13",
+      "question": "What separator can print() use between several values, and what spacing does it add by default?",
+      "targets": [
+        {"pdf": "4-IntroPython.pdf", "page": 49, "char_start": 0, "char_end": 283, "grade": 2, "note": "Comma-separated arguments are printed with a space by default."}
+      ]
+    },
+    {
+      "id": "rag-01",
+      "question": "What limitations of language models motivate retrieval-augmented generation?",
+      "targets": [
+        {"pdf": "2312.10997v5.pdf", "page": 1, "char_start": 1659, "char_end": 2608, "grade": 2, "note": "The survey motivates external retrieval with knowledge, freshness, and hallucination limitations."}
+      ]
+    },
+    {
+      "id": "rag-02",
+      "question": "What are the three main stages of a basic RAG question-answering pipeline?",
+      "targets": [
+        {"pdf": "2312.10997v5.pdf", "page": 3, "char_start": 0, "char_end": 813, "grade": 2, "note": "The overview describes indexing, retrieval, and generation."}
+      ]
+    },
+    {
+      "id": "rag-03",
+      "question": "How do Naive, Advanced, and Modular RAG differ in their organization and flexibility?",
+      "targets": [
+        {"pdf": "2312.10997v5.pdf", "page": 4, "char_start": 0, "char_end": 708, "grade": 2, "note": "The survey contrasts a simple chain, added optimization stages, and reconfigurable modules."}
+      ]
+    },
+    {
+      "id": "rag-04",
+      "question": "Which pre-retrieval techniques can improve an index or make a user query more suitable for retrieval?",
+      "targets": [
+        {"pdf": "2312.10997v5.pdf", "page": 4, "char_start": 1152, "char_end": 2060, "grade": 2, "note": "The passage describes query rewriting, transformation, and expansion alongside index improvements."}
+      ]
+    },
+    {
+      "id": "rag-05",
+      "question": "What kinds of data sources can a RAG retriever use, and what is an example of unstructured text data?",
+      "targets": [
+        {"pdf": "2312.10997v5.pdf", "page": 7, "char_start": 736, "char_end": 1439, "grade": 2, "note": "The survey discusses unstructured corpora and examples such as encyclopedic and domain-specific text."}
+      ]
+    },
+    {
+      "id": "rag-06",
+      "question": "Why can tables in PDFs be difficult for text-oriented RAG, and what handling approaches are discussed?",
+      "targets": [
+        {"pdf": "2312.10997v5.pdf", "page": 7, "char_start": 2109, "char_end": 3028, "grade": 2, "note": "The passage discusses table-aware models and converting tables to text."}
+      ]
+    },
+    {
+      "id": "rag-07",
+      "question": "What does proposition-level retrieval mean, and why might it improve retrieval precision?",
+      "targets": [
+        {"pdf": "2312.10997v5.pdf", "page": 8, "char_start": 836, "char_end": 1782, "grade": 2, "note": "Propositions are concise, self-contained atomic factual units."}
+      ]
+    },
+    {
+      "id": "rag-08",
+      "question": "How does fixed-size chunking work, and what retrieval trade-off does chunk size create?",
+      "targets": [
+        {"pdf": "2312.10997v5.pdf", "page": 8, "char_start": 2397, "char_end": 3395, "grade": 2, "note": "The survey discusses token-count chunking and the balance between context and retrieval granularity."}
+      ]
+    },
+    {
+      "id": "rag-09",
+      "question": "What document or chunk metadata can be attached to retrieved passages, and what can that help with?",
+      "targets": [
+        {"pdf": "2312.10997v5.pdf", "page": 8, "char_start": 3951, "char_end": 4934, "grade": 2, "note": "Metadata such as page, filename, and author can provide context for retrieval."}
+      ]
+    },
+    {
+      "id": "rag-10",
+      "question": "How can query expansion help retrieve information for a complex question?",
+      "targets": [
+        {"pdf": "2312.10997v5.pdf", "page": 8, "char_start": 4785, "char_end": 5740, "grade": 2, "note": "Expanded or decomposed queries can be issued to retrieve complementary information."}
+      ]
+    },
+    {
+      "id": "rag-11",
+      "question": "How does HyDE change the representation used to retrieve documents?",
+      "targets": [
+        {"pdf": "2312.10997v5.pdf", "page": 9, "char_start": 1650, "char_end": 2596, "grade": 2, "note": "HyDE embeds a hypothetical answer document rather than only the original query."}
+      ]
+    },
+    {
+      "id": "rag-12",
+      "question": "What is query routing in a RAG system, and what can determine the route?",
+      "targets": [
+        {"pdf": "2312.10997v5.pdf", "page": 9, "char_start": 3265, "char_end": 4080, "grade": 2, "note": "Routing selects a pipeline or source based on query needs and routing signals."}
+      ]
+    },
+    {
+      "id": "rag-13",
+      "question": "How does hybrid retrieval combine signals, and how are dense retrieval results commonly compared?",
+      "targets": [
+        {"pdf": "2312.10997v5.pdf", "page": 9, "char_start": 3930, "char_end": 4921, "grade": 2, "note": "Dense retrieval compares query and chunk embeddings, while hybrid methods combine retrieval approaches."}
+      ]
+    },
+    {
+      "id": "rag-14",
+      "question": "What is the purpose of reranking retrieved chunks before generation?",
+      "targets": [
+        {"pdf": "2312.10997v5.pdf", "page": 10, "char_start": 2265, "char_end": 3183, "grade": 2, "note": "Reranking reorders retrieved chunks to put more pertinent passages first."}
+      ]
+    },
+    {
+      "id": "rag-15",
+      "question": "Why might a RAG system select or compress context instead of passing every retrieved passage to the generator?",
+      "targets": [
+        {"pdf": "2312.10997v5.pdf", "page": 10, "char_start": 3818, "char_end": 4811, "grade": 2, "note": "Context reduction limits redundancy and long-context problems while preserving useful information."}
+      ]
+    },
+    {
+      "id": "rag-16",
+      "question": "How do iterative, recursive, and adaptive retrieval differ?",
+      "targets": [
+        {"pdf": "2312.10997v5.pdf", "page": 11, "char_start": 0, "char_end": 728, "grade": 2, "note": "The survey distinguishes repeated retrieve-generate cycles, query decomposition, and retrieval decisions made as needed."},
+        {"pdf": "2312.10997v5.pdf", "page": 11, "char_start": 2071, "char_end": 3008, "grade": 1, "note": "The recursive-retrieval discussion describes refining queries and improving search depth."}
+      ]
+    },
+    {
+      "id": "rag-17",
+      "question": "Which measures or quality dimensions are used to evaluate RAG retrieval and generated answers?",
+      "targets": [
+        {"pdf": "2312.10997v5.pdf", "page": 12, "char_start": 2490, "char_end": 3254, "grade": 2, "note": "The survey describes context relevance, faithfulness, and answer relevance."},
+        {"pdf": "2312.10997v5.pdf", "page": 14, "char_start": 0, "char_end": 975, "grade": 1, "note": "A table maps common metrics to RAG evaluation aspects."}
+      ]
+    },
+    {
+      "id": "rag-18",
+      "question": "Which evaluation frameworks are compared for retrieval and generation quality?",
+      "targets": [
+        {"pdf": "2312.10997v5.pdf", "page": 15, "char_start": 0, "char_end": 984, "grade": 2, "note": "The framework table compares evaluation targets, aspects, and quantitative measures."}
+      ]
+    },
+    {
+      "id": "rag-19",
+      "question": "How is RAG being extended beyond text question answering to other data modalities?",
+      "targets": [
+        {"pdf": "2312.10997v5.pdf", "page": 16, "char_start": 1448, "char_end": 2428, "grade": 2, "note": "The survey introduces multimodal RAG across image, audio, video, and code use cases."}
+      ]
+    },
+    {
+      "id": "nist-01",
+      "question": "How does the AI RMF define risk in relation to likelihood and the consequences of an event?",
+      "targets": [
+        {"pdf": "NIST.AI.100-1.pdf.pdf", "page": 9, "char_start": 674, "char_end": 1596, "grade": 2, "note": "Risk combines the likelihood of an event with the magnitude of its consequences."}
+      ]
+    },
+    {
+      "id": "nist-02",
+      "question": "Does an inability to measure an AI risk mean the system is necessarily high-risk or low-risk?",
+      "targets": [
+        {"pdf": "NIST.AI.100-1.pdf.pdf", "page": 10, "char_start": 572, "char_end": 1519, "grade": 2, "note": "Measurement difficulty alone does not establish a high or low risk level."}
+      ]
+    },
+    {
+      "id": "nist-03",
+      "question": "What can go wrong when AI risk metrics ignore context or differences between affected groups?",
+      "targets": [
+        {"pdf": "NIST.AI.100-1.pdf.pdf", "page": 11, "char_start": 637, "char_end": 1590, "grade": 2, "note": "Metrics may oversimplify, be gamed, or miss subgroup and context differences."}
+      ]
+    },
+    {
+      "id": "nist-04",
+      "question": "What does risk tolerance mean, and why does it vary across organizations or use cases?",
+      "targets": [
+        {"pdf": "NIST.AI.100-1.pdf.pdf", "page": 12, "char_start": 0, "char_end": 888, "grade": 2, "note": "Risk tolerance is readiness to bear risk and depends on objectives and context."}
+      ]
+    },
+    {
+      "id": "nist-05",
+      "question": "How should organizations respond to their highest-priority AI risks, including unacceptable residual risk?",
+      "targets": [
+        {"pdf": "NIST.AI.100-1.pdf.pdf", "page": 13, "char_start": 0, "char_end": 970, "grade": 2, "note": "Highest risks warrant urgent attention; development or deployment should stop safely when risk is unacceptable."}
+      ]
+    },
+    {
+      "id": "nist-06",
+      "question": "Why does AI risk management call for diverse perspectives and actors across the lifecycle?",
+      "targets": [
+        {"pdf": "NIST.AI.100-1.pdf.pdf", "page": 14, "char_start": 709, "char_end": 1671, "grade": 2, "note": "A broad, diverse set of actors helps identify context, impacts, and risks throughout the lifecycle."}
+      ]
+    },
+    {
+      "id": "nist-07",
+      "question": "Which characteristics does NIST identify as important for trustworthy AI systems?",
+      "targets": [
+        {"pdf": "NIST.AI.100-1.pdf.pdf", "page": 17, "char_start": 0, "char_end": 955, "grade": 2, "note": "The framework lists validity, reliability, safety, security, accountability, transparency, explainability, privacy, and fairness."}
+      ]
+    },
+    {
+      "id": "nist-08",
+      "question": "What makes an accuracy test set appropriate for evaluating an AI system?",
+      "targets": [
+        {"pdf": "NIST.AI.100-1.pdf.pdf", "page": 19, "char_start": 732, "char_end": 1436, "grade": 2, "note": "Test sets should represent expected-use conditions and be documented with their methodology."}
+      ]
+    },
+    {
+      "id": "nist-09",
+      "question": "What practices support AI safety, and how are security and resilience characterized?",
+      "targets": [
+        {"pdf": "NIST.AI.100-1.pdf.pdf", "page": 20, "char_start": 0, "char_end": 712, "grade": 2, "note": "Safety practices include early design attention, testing, monitoring, and intervention."},
+        {"pdf": "NIST.AI.100-1.pdf.pdf", "page": 20, "char_start": 1279, "char_end": 2053, "grade": 2, "note": "Resilience concerns withstanding adverse changes; security protects confidentiality, integrity, and availability."}
+      ]
+    },
+    {
+      "id": "nist-10",
+      "question": "How are accountability and transparency related, and what does transparency reveal?",
+      "targets": [
+        {"pdf": "NIST.AI.100-1.pdf.pdf", "page": 21, "char_start": 0, "char_end": 936, "grade": 2, "note": "Accountability presupposes transparency, which concerns information about system operation and outcomes."}
+      ]
+    },
+    {
+      "id": "nist-11",
+      "question": "How does the framework distinguish transparency, explainability, and interpretability?",
+      "targets": [
+        {"pdf": "NIST.AI.100-1.pdf.pdf", "page": 22, "char_start": 0, "char_end": 752, "grade": 2, "note": "The framework differentiates what happened, how a decision was made, and why it matters."},
+        {"pdf": "NIST.AI.100-1.pdf.pdf", "page": 22, "char_start": 602, "char_end": 1542, "grade": 1, "note": "The passage continues the distinction and transitions to privacy."}
+      ]
+    },
+    {
+      "id": "nist-12",
+      "question": "What does privacy mean in the AI RMF, beyond merely keeping data secret?",
+      "targets": [
+        {"pdf": "NIST.AI.100-1.pdf.pdf", "page": 22, "char_start": 602, "char_end": 1542, "grade": 2, "note": "Privacy practices safeguard autonomy, identity, and dignity."}
+      ]
+    },
+    {
+      "id": "nist-13",
+      "question": "Which three categories of AI bias does NIST say should be considered?",
+      "targets": [
+        {"pdf": "NIST.AI.100-1.pdf.pdf", "page": 23, "char_start": 0, "char_end": 914, "grade": 2, "note": "The categories are systemic, computational/statistical, and human-cognitive."}
+      ]
+    },
+    {
+      "id": "nist-14",
+      "question": "What are the four functions of the AI RMF Core, and how is governance positioned among them?",
+      "targets": [
+        {"pdf": "NIST.AI.100-1.pdf.pdf", "page": 25, "char_start": 0, "char_end": 833, "grade": 2, "note": "The Core has GOVERN, MAP, MEASURE, and MANAGE, with GOVERN cross-cutting."},
+        {"pdf": "NIST.AI.100-1.pdf.pdf", "page": 25, "char_start": 683, "char_end": 1286, "grade": 1, "note": "The passage explains governance's cross-cutting role and lifecycle-wide risk management."}
+      ]
+    },
+    {
+      "id": "nist-15",
+      "question": "Why is GOVERN described as a cross-cutting AI RMF function?",
+      "targets": [
+        {"pdf": "NIST.AI.100-1.pdf.pdf", "page": 27, "char_start": 0, "char_end": 975, "grade": 2, "note": "Governance is continuous and integrated into the other risk-management functions."}
+      ]
+    },
+    {
+      "id": "nist-16",
+      "question": "What is the purpose of the MAP function in AI risk management?",
+      "targets": [
+        {"pdf": "NIST.AI.100-1.pdf.pdf", "page": 30, "char_start": 716, "char_end": 1692, "grade": 2, "note": "MAP establishes context and identifies risks and contributing factors."},
+        {"pdf": "NIST.AI.100-1.pdf.pdf", "page": 31, "char_start": 0, "char_end": 735, "grade": 1, "note": "MAP categories include establishing and documenting context."}
+      ]
+    },
+    {
+      "id": "nist-17",
+      "question": "What does the MEASURE function do with AI risk methods and metrics?",
+      "targets": [
+        {"pdf": "NIST.AI.100-1.pdf.pdf", "page": 34, "char_start": 0, "char_end": 932, "grade": 2, "note": "MEASURE selects, applies, reviews, and documents methods and metrics."}
+      ]
+    },
+    {
+      "id": "nist-18",
+      "question": "How does MANAGE address assessed risks and continue risk treatment after deployment?",
+      "targets": [
+        {"pdf": "NIST.AI.100-1.pdf.pdf", "page": 37, "char_start": 817, "char_end": 1781, "grade": 2, "note": "Risk responses are prioritized and may mitigate, transfer, avoid, or accept risks."},
+        {"pdf": "NIST.AI.100-1.pdf.pdf", "page": 38, "char_start": 0, "char_end": 973, "grade": 1, "note": "Post-deployment monitoring includes appeals, incident response, and recovery."}
+      ]
+    }
+  ]
+}

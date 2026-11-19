@@ -1,0 +1,179 @@
+{
+  "benchmark_version": 1,
+  "question_count": 50,
+  "sample_method": "One top RRF candidate per question from candidate_k=10; the same query-passage pairs are scored for every configuration.",
+  "candidate_k": 10,
+  "documents": [
+    "4-IntroPython.pdf",
+    "2312.10997v5.pdf",
+    "NIST.AI.100-1.pdf.pdf"
+  ],
+  "indexing_seconds": 275.26540459999524,
+  "configurations": [
+    {
+      "batch_size": 1,
+      "threads": 1,
+      "pair_count": 50,
+      "model_load_seconds": 3.4321428000112064,
+      "tokenization_seconds": 0.08201590002863668,
+      "inference_seconds": 13.213101599976653,
+      "wall_seconds": 13.308227399989846,
+      "process_cpu_seconds": 11.546875,
+      "peak_working_set_bytes": 248066048
+    },
+    {
+      "batch_size": 1,
+      "threads": 2,
+      "pair_count": 50,
+      "model_load_seconds": 2.855476400000043,
+      "tokenization_seconds": 0.08736270002555102,
+      "inference_seconds": 9.330708599969512,
+      "wall_seconds": 9.433621799995308,
+      "process_cpu_seconds": 13.96875,
+      "peak_working_set_bytes": 247980032
+    },
+    {
+      "batch_size": 1,
+      "threads": 4,
+      "pair_count": 50,
+      "model_load_seconds": 2.8740065999882063,
+      "tokenization_seconds": 0.11338649994286243,
+      "inference_seconds": 10.661105400009546,
+      "wall_seconds": 10.788549199991394,
+      "process_cpu_seconds": 23.640625,
+      "peak_working_set_bytes": 248729600
+    },
+    {
+      "batch_size": 2,
+      "threads": 1,
+      "pair_count": 50,
+      "model_load_seconds": 2.835250600008294,
+      "tokenization_seconds": 0.0467703999747755,
+      "inference_seconds": 13.583460800000466,
+      "wall_seconds": 13.639002399999299,
+      "process_cpu_seconds": 10.296875,
+      "peak_working_set_bytes": 255045632
+    },
+    {
+      "batch_size": 2,
+      "threads": 2,
+      "pair_count": 50,
+      "model_load_seconds": 2.877837499996531,
+      "tokenization_seconds": 0.056699399996432476,
+      "inference_seconds": 9.660636399959913,
+      "wall_seconds": 9.727411700005177,
+      "process_cpu_seconds": 14.265625,
+      "peak_working_set_bytes": 255229952
+    },
+    {
+      "batch_size": 2,
+      "threads": 4,
+      "pair_count": 50,
+      "model_load_seconds": 2.8670647999970242,
+      "tokenization_seconds": 0.09520270000211895,
+      "inference_seconds": 10.787850399967283,
+      "wall_seconds": 10.894285799993668,
+      "process_cpu_seconds": 25.28125,
+      "peak_working_set_bytes": 256004096
+    },
+    {
+      "batch_size": 4,
+      "threads": 1,
+      "pair_count": 50,
+      "model_load_seconds": 2.8067058000015095,
+      "tokenization_seconds": 0.029971899988595396,
+      "inference_seconds": 14.997752700015553,
+      "wall_seconds": 15.034196199994767,
+      "process_cpu_seconds": 12.640625,
+      "peak_working_set_bytes": 298029056
+    },
+    {
+      "batch_size": 4,
+      "threads": 2,
+      "pair_count": 50,
+      "model_load_seconds": 2.9124092999991262,
+      "tokenization_seconds": 0.16600140000809915,
+      "inference_seconds": 19.79555789998267,
+      "wall_seconds": 19.971385400000145,
+      "process_cpu_seconds": 18.296875,
+      "peak_working_set_bytes": 298500096
+    },
+    {
+      "batch_size": 4,
+      "threads": 4,
+      "pair_count": 50,
+      "model_load_seconds": 4.002128499996616,
+      "tokenization_seconds": 0.35252309999486897,
+      "inference_seconds": 22.99477640002442,
+      "wall_seconds": 23.35801990001346,
+      "process_cpu_seconds": 36.34375,
+      "peak_working_set_bytes": 299040768
+    },
+    {
+      "batch_size": 8,
+      "threads": 1,
+      "pair_count": 50,
+      "model_load_seconds": 3.71744249999756,
+      "tokenization_seconds": 0.03558729997894261,
+      "inference_seconds": 18.49704999999085,
+      "wall_seconds": 18.538538299995707,
+      "process_cpu_seconds": 16.203125,
+      "peak_working_set_bytes": 383344640
+    },
+    {
+      "batch_size": 8,
+      "threads": 2,
+      "pair_count": 50,
+      "model_load_seconds": 2.945378800010076,
+      "tokenization_seconds": 0.03881169999658596,
+      "inference_seconds": 11.681800299993483,
+      "wall_seconds": 11.729158300004201,
+      "process_cpu_seconds": 16.015625,
+      "peak_working_set_bytes": 383950848
+    },
+    {
+      "batch_size": 8,
+      "threads": 4,
+      "pair_count": 50,
+      "model_load_seconds": 2.892888000002131,
+      "tokenization_seconds": 0.06952829998044763,
+      "inference_seconds": 12.355622199989739,
+      "wall_seconds": 12.435767100003432,
+      "process_cpu_seconds": 26.625,
+      "peak_working_set_bytes": 384503808
+    },
+    {
+      "batch_size": 16,
+      "threads": 1,
+      "pair_count": 50,
+      "model_load_seconds": 2.9333986999990884,
+      "tokenization_seconds": 0.04164160000800621,
+      "inference_seconds": 20.877254300008644,
+      "wall_seconds": 20.925770300003933,
+      "process_cpu_seconds": 18.703125,
+      "peak_working_set_bytes": 507805696
+    },
+    {
+      "batch_size": 16,
+      "threads": 2,
+      "pair_count": 50,
+      "model_load_seconds": 2.9990274000010686,
+      "tokenization_seconds": 0.03640879999147728,
+      "inference_seconds": 14.553615800017724,
+      "wall_seconds": 14.596974000000046,
+      "process_cpu_seconds": 20.59375,
+      "peak_working_set_bytes": 507994112
+    },
+    {
+      "batch_size": 16,
+      "threads": 4,
+      "pair_count": 50,
+      "model_load_seconds": 3.0188666000030935,
+      "tokenization_seconds": 0.04290850002143998,
+      "inference_seconds": 13.5677515000134,
+      "wall_seconds": 13.628897999995388,
+      "process_cpu_seconds": 28.6875,
+      "peak_working_set_bytes": 508420096
+    }
+  ]
+}

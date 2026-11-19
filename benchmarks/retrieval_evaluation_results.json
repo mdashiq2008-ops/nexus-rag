@@ -1,0 +1,5751 @@
+{
+  "benchmark_version": 1,
+  "question_count": 50,
+  "top_k": 5,
+  "candidate_k": 40,
+  "documents": [
+    "4-IntroPython.pdf",
+    "2312.10997v5.pdf",
+    "NIST.AI.100-1.pdf.pdf"
+  ],
+  "models": {
+    "embedder": "sentence-transformers/all-MiniLM-L6-v2",
+    "reranker": "Xenova/ms-marco-MiniLM-L-6-v2"
+  },
+  "setup_seconds": {
+    "embedder_load": 3.9394677999953274,
+    "indexing": 224.18522330000997,
+    "reranker_load": 1.0557006999879377
+  },
+  "metric_definitions": {
+    "recall_at_k": "Relevant annotated passages retrieved divided by all relevant annotated passages.",
+    "mrr_at_k": "Reciprocal rank of the first relevant passage, or zero when absent.",
+    "ndcg_at_k": "Normalized DCG using annotated relevance grades and gain 2^grade - 1.",
+    "top1_accuracy": "Fraction of questions with a relevant passage at rank one.",
+    "latency": "Warm search wall time; model initialization and indexing excluded."
+  },
+  "summary": {
+    "A": {
+      "recall_at_k": 0.82,
+      "mrr_at_k": 0.5846666666666667,
+      "ndcg_at_k": 0.6432396234839016,
+      "top1_accuracy": 0.42,
+      "mean_latency_seconds": 0.37588060600013706,
+      "median_latency_seconds": 0.15783189999638125
+    },
+    "B": {
+      "recall_at_k": 0.85,
+      "mrr_at_k": 0.6973333333333334,
+      "ndcg_at_k": 0.7311460510726686,
+      "top1_accuracy": 0.58,
+      "mean_latency_seconds": 18.15568896199984,
+      "median_latency_seconds": 16.117015349998837
+    }
+  },
+  "per_question": {
+    "A": [
+      {
+        "id": "py-01",
+        "question": "What is the conventional first program for a new programmer, and what does the example print?",
+        "recall_at_k": 1.0,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 1.0,
+        "top1_accuracy": 1.0,
+        "latency_seconds": 0.14814879999903496,
+        "first_relevant_rank": 1,
+        "ranked_results": [
+          {
+            "rank": 1,
+            "pdf": "4-IntroPython.pdf",
+            "page": 7,
+            "char_start": 0,
+            "char_end": 498,
+            "score": 0.032266458495966696,
+            "relevance_grade": 2
+          },
+          {
+            "rank": 2,
+            "pdf": "4-IntroPython.pdf",
+            "page": 11,
+            "char_start": 0,
+            "char_end": 895,
+            "score": 0.03128054740957967,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 3,
+            "pdf": "4-IntroPython.pdf",
+            "page": 8,
+            "char_start": 0,
+            "char_end": 924,
+            "score": 0.030090497737556562,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 4,
+            "pdf": "4-IntroPython.pdf",
+            "page": 9,
+            "char_start": 0,
+            "char_end": 986,
+            "score": 0.03007688828584351,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 5,
+            "pdf": "4-IntroPython.pdf",
+            "page": 15,
+            "char_start": 0,
+            "char_end": 339,
+            "score": 0.027479766610201392,
+            "relevance_grade": 0
+          }
+        ]
+      },
+      {
+        "id": "py-02",
+        "question": "How does the example program convert two typed values before adding them?",
+        "recall_at_k": 0.0,
+        "mrr_at_k": 0.0,
+        "ndcg_at_k": 0.0,
+        "top1_accuracy": 0.0,
+        "latency_seconds": 0.16723819999606349,
+        "first_relevant_rank": null,
+        "ranked_results": [
+          {
+            "rank": 1,
+            "pdf": "4-IntroPython.pdf",
+            "page": 41,
+            "char_start": 0,
+            "char_end": 374,
+            "score": 0.029236022193768675,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 2,
+            "pdf": "4-IntroPython.pdf",
+            "page": 43,
+            "char_start": 0,
+            "char_end": 385,
+            "score": 0.028958333333333336,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 3,
+            "pdf": "4-IntroPython.pdf",
+            "page": 42,
+            "char_start": 0,
+            "char_end": 387,
+            "score": 0.0288981288981289,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 4,
+            "pdf": "4-IntroPython.pdf",
+            "page": 15,
+            "char_start": 0,
+            "char_end": 339,
+            "score": 0.028850145288501453,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 5,
+            "pdf": "4-IntroPython.pdf",
+            "page": 14,
+            "char_start": 0,
+            "char_end": 319,
+            "score": 0.02871794871794872,
+            "relevance_grade": 0
+          }
+        ]
+      },
+      {
+        "id": "py-03",
+        "question": "When should a Python print string use single quotes versus double quotes?",
+        "recall_at_k": 1.0,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 1.0,
+        "top1_accuracy": 1.0,
+        "latency_seconds": 0.1685657999914838,
+        "first_relevant_rank": 1,
+        "ranked_results": [
+          {
+            "rank": 1,
+            "pdf": "4-IntroPython.pdf",
+            "page": 23,
+            "char_start": 0,
+            "char_end": 472,
+            "score": 0.03278688524590164,
+            "relevance_grade": 2
+          },
+          {
+            "rank": 2,
+            "pdf": "4-IntroPython.pdf",
+            "page": 33,
+            "char_start": 0,
+            "char_end": 426,
+            "score": 0.0315136476426799,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 3,
+            "pdf": "4-IntroPython.pdf",
+            "page": 36,
+            "char_start": 0,
+            "char_end": 363,
+            "score": 0.03128054740957967,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 4,
+            "pdf": "4-IntroPython.pdf",
+            "page": 46,
+            "char_start": 0,
+            "char_end": 477,
+            "score": 0.031009615384615385,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 5,
+            "pdf": "4-IntroPython.pdf",
+            "page": 48,
+            "char_start": 0,
+            "char_end": 296,
+            "score": 0.030330882352941176,
+            "relevance_grade": 0
+          }
+        ]
+      },
+      {
+        "id": "py-04",
+        "question": "What does input() return, and how is the entered value initially treated?",
+        "recall_at_k": 1.0,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 1.0,
+        "top1_accuracy": 1.0,
+        "latency_seconds": 0.12658519999240525,
+        "first_relevant_rank": 1,
+        "ranked_results": [
+          {
+            "rank": 1,
+            "pdf": "4-IntroPython.pdf",
+            "page": 24,
+            "char_start": 0,
+            "char_end": 393,
+            "score": 0.03278688524590164,
+            "relevance_grade": 2
+          },
+          {
+            "rank": 2,
+            "pdf": "4-IntroPython.pdf",
+            "page": 37,
+            "char_start": 0,
+            "char_end": 434,
+            "score": 0.027623285131627734,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 3,
+            "pdf": "4-IntroPython.pdf",
+            "page": 26,
+            "char_start": 0,
+            "char_end": 282,
+            "score": 0.02749266862170088,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 4,
+            "pdf": "4-IntroPython.pdf",
+            "page": 25,
+            "char_start": 0,
+            "char_end": 228,
+            "score": 0.026984126984126985,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 5,
+            "pdf": "4-IntroPython.pdf",
+            "page": 27,
+            "char_start": 0,
+            "char_end": 384,
+            "score": 0.026494565217391304,
+            "relevance_grade": 0
+          }
+        ]
+      },
+      {
+        "id": "py-05",
+        "question": "What does a variable represent in a Python program?",
+        "recall_at_k": 1.0,
+        "mrr_at_k": 0.5,
+        "ndcg_at_k": 0.6309297535714574,
+        "top1_accuracy": 0.0,
+        "latency_seconds": 0.12891480000689626,
+        "first_relevant_rank": 2,
+        "ranked_results": [
+          {
+            "rank": 1,
+            "pdf": "4-IntroPython.pdf",
+            "page": 31,
+            "char_start": 0,
+            "char_end": 398,
+            "score": 0.032266458495966696,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 2,
+            "pdf": "4-IntroPython.pdf",
+            "page": 25,
+            "char_start": 0,
+            "char_end": 228,
+            "score": 0.032018442622950824,
+            "relevance_grade": 2
+          },
+          {
+            "rank": 3,
+            "pdf": "4-IntroPython.pdf",
+            "page": 26,
+            "char_start": 0,
+            "char_end": 282,
+            "score": 0.03200204813108039,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 4,
+            "pdf": "4-IntroPython.pdf",
+            "page": 29,
+            "char_start": 0,
+            "char_end": 462,
+            "score": 0.03128054740957967,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 5,
+            "pdf": "4-IntroPython.pdf",
+            "page": 27,
+            "char_start": 0,
+            "char_end": 384,
+            "score": 0.03076923076923077,
+            "relevance_grade": 0
+          }
+        ]
+      },
+      {
+        "id": "py-06",
+        "question": "How is assignment different from mathematical equality, and in what order is an assignment evaluated?",
+        "recall_at_k": 1.0,
+        "mrr_at_k": 0.5,
+        "ndcg_at_k": 0.6309297535714574,
+        "top1_accuracy": 0.0,
+        "latency_seconds": 0.1444125999987591,
+        "first_relevant_rank": 2,
+        "ranked_results": [
+          {
+            "rank": 1,
+            "pdf": "4-IntroPython.pdf",
+            "page": 27,
+            "char_start": 0,
+            "char_end": 384,
+            "score": 0.03252247488101534,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 2,
+            "pdf": "4-IntroPython.pdf",
+            "page": 28,
+            "char_start": 0,
+            "char_end": 642,
+            "score": 0.032266458495966696,
+            "relevance_grade": 2
+          },
+          {
+            "rank": 3,
+            "pdf": "4-IntroPython.pdf",
+            "page": 26,
+            "char_start": 0,
+            "char_end": 282,
+            "score": 0.03200204813108039,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 4,
+            "pdf": "4-IntroPython.pdf",
+            "page": 34,
+            "char_start": 0,
+            "char_end": 307,
+            "score": 0.02758751902587519,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 5,
+            "pdf": "4-IntroPython.pdf",
+            "page": 32,
+            "char_start": 0,
+            "char_end": 415,
+            "score": 0.02690501986276634,
+            "relevance_grade": 0
+          }
+        ]
+      },
+      {
+        "id": "py-07",
+        "question": "What characters may appear in Python variable names, and are names case-sensitive?",
+        "recall_at_k": 1.0,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 1.0,
+        "top1_accuracy": 1.0,
+        "latency_seconds": 0.13446190000104252,
+        "first_relevant_rank": 1,
+        "ranked_results": [
+          {
+            "rank": 1,
+            "pdf": "4-IntroPython.pdf",
+            "page": 29,
+            "char_start": 0,
+            "char_end": 462,
+            "score": 0.03278688524590164,
+            "relevance_grade": 2
+          },
+          {
+            "rank": 2,
+            "pdf": "4-IntroPython.pdf",
+            "page": 31,
+            "char_start": 0,
+            "char_end": 398,
+            "score": 0.03200204813108039,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 3,
+            "pdf": "4-IntroPython.pdf",
+            "page": 33,
+            "char_start": 0,
+            "char_end": 426,
+            "score": 0.029857397504456328,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 4,
+            "pdf": "4-IntroPython.pdf",
+            "page": 26,
+            "char_start": 0,
+            "char_end": 282,
+            "score": 0.02964426877470356,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 5,
+            "pdf": "4-IntroPython.pdf",
+            "page": 25,
+            "char_start": 0,
+            "char_end": 228,
+            "score": 0.02946912242686891,
+            "relevance_grade": 0
+          }
+        ]
+      },
+      {
+        "id": "py-08",
+        "question": "How does assigning 700 versus 700.0 affect the type of a Python variable?",
+        "recall_at_k": 1.0,
+        "mrr_at_k": 0.5,
+        "ndcg_at_k": 0.6309297535714574,
+        "top1_accuracy": 0.0,
+        "latency_seconds": 0.1982894000102533,
+        "first_relevant_rank": 2,
+        "ranked_results": [
+          {
+            "rank": 1,
+            "pdf": "4-IntroPython.pdf",
+            "page": 31,
+            "char_start": 0,
+            "char_end": 398,
+            "score": 0.03225806451612903,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 2,
+            "pdf": "4-IntroPython.pdf",
+            "page": 32,
+            "char_start": 0,
+            "char_end": 415,
+            "score": 0.032018442622950824,
+            "relevance_grade": 2
+          },
+          {
+            "rank": 3,
+            "pdf": "4-IntroPython.pdf",
+            "page": 29,
+            "char_start": 0,
+            "char_end": 462,
+            "score": 0.031024531024531024,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 4,
+            "pdf": "4-IntroPython.pdf",
+            "page": 25,
+            "char_start": 0,
+            "char_end": 228,
+            "score": 0.03036576949620428,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 5,
+            "pdf": "4-IntroPython.pdf",
+            "page": 26,
+            "char_start": 0,
+            "char_end": 282,
+            "score": 0.029910714285714284,
+            "relevance_grade": 0
+          }
+        ]
+      },
+      {
+        "id": "py-09",
+        "question": "Which basic Python types are illustrated, including the type used for True and False?",
+        "recall_at_k": 1.0,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 1.0,
+        "top1_accuracy": 1.0,
+        "latency_seconds": 0.2002853000012692,
+        "first_relevant_rank": 1,
+        "ranked_results": [
+          {
+            "rank": 1,
+            "pdf": "4-IntroPython.pdf",
+            "page": 33,
+            "char_start": 0,
+            "char_end": 426,
+            "score": 0.03278688524590164,
+            "relevance_grade": 2
+          },
+          {
+            "rank": 2,
+            "pdf": "4-IntroPython.pdf",
+            "page": 32,
+            "char_start": 0,
+            "char_end": 415,
+            "score": 0.03128054740957967,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 3,
+            "pdf": "4-IntroPython.pdf",
+            "page": 5,
+            "char_start": 0,
+            "char_end": 133,
+            "score": 0.02758751902587519,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 4,
+            "pdf": "4-IntroPython.pdf",
+            "page": 50,
+            "char_start": 0,
+            "char_end": 117,
+            "score": 0.027118043247075507,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 5,
+            "pdf": "4-IntroPython.pdf",
+            "page": 1,
+            "char_start": 0,
+            "char_end": 129,
+            "score": 0.026736111111111113,
+            "relevance_grade": 0
+          }
+        ]
+      },
+      {
+        "id": "py-10",
+        "question": "When is float a more appropriate type than int, and when is int appropriate?",
+        "recall_at_k": 1.0,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 1.0,
+        "top1_accuracy": 1.0,
+        "latency_seconds": 0.2051839000050677,
+        "first_relevant_rank": 1,
+        "ranked_results": [
+          {
+            "rank": 1,
+            "pdf": "4-IntroPython.pdf",
+            "page": 34,
+            "char_start": 0,
+            "char_end": 307,
+            "score": 0.03252247488101534,
+            "relevance_grade": 2
+          },
+          {
+            "rank": 2,
+            "pdf": "4-IntroPython.pdf",
+            "page": 32,
+            "char_start": 0,
+            "char_end": 415,
+            "score": 0.032266458495966696,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 3,
+            "pdf": "4-IntroPython.pdf",
+            "page": 33,
+            "char_start": 0,
+            "char_end": 426,
+            "score": 0.03200204813108039,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 4,
+            "pdf": "4-IntroPython.pdf",
+            "page": 38,
+            "char_start": 0,
+            "char_end": 412,
+            "score": 0.030090497737556562,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 5,
+            "pdf": "4-IntroPython.pdf",
+            "page": 40,
+            "char_start": 0,
+            "char_end": 412,
+            "score": 0.02964426877470356,
+            "relevance_grade": 0
+          }
+        ]
+      },
+      {
+        "id": "py-11",
+        "question": "How can a program convert a numeric string returned by input into an integer?",
+        "recall_at_k": 1.0,
+        "mrr_at_k": 0.3333333333333333,
+        "ndcg_at_k": 0.5,
+        "top1_accuracy": 0.0,
+        "latency_seconds": 0.16147449999698438,
+        "first_relevant_rank": 3,
+        "ranked_results": [
+          {
+            "rank": 1,
+            "pdf": "4-IntroPython.pdf",
+            "page": 37,
+            "char_start": 0,
+            "char_end": 434,
+            "score": 0.03177805800756621,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 2,
+            "pdf": "4-IntroPython.pdf",
+            "page": 38,
+            "char_start": 0,
+            "char_end": 412,
+            "score": 0.03128054740957967,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 3,
+            "pdf": "4-IntroPython.pdf",
+            "page": 39,
+            "char_start": 0,
+            "char_end": 357,
+            "score": 0.031099324975891997,
+            "relevance_grade": 2
+          },
+          {
+            "rank": 4,
+            "pdf": "4-IntroPython.pdf",
+            "page": 33,
+            "char_start": 0,
+            "char_end": 426,
+            "score": 0.031009615384615385,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 5,
+            "pdf": "4-IntroPython.pdf",
+            "page": 40,
+            "char_start": 0,
+            "char_end": 412,
+            "score": 0.030798389007344232,
+            "relevance_grade": 0
+          }
+        ]
+      },
+      {
+        "id": "py-12",
+        "question": "How can an integer be included in a string assembled with the + operator?",
+        "recall_at_k": 1.0,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 1.0,
+        "top1_accuracy": 1.0,
+        "latency_seconds": 0.19328730000415817,
+        "first_relevant_rank": 1,
+        "ranked_results": [
+          {
+            "rank": 1,
+            "pdf": "4-IntroPython.pdf",
+            "page": 46,
+            "char_start": 0,
+            "char_end": 477,
+            "score": 0.03278688524590164,
+            "relevance_grade": 2
+          },
+          {
+            "rank": 2,
+            "pdf": "4-IntroPython.pdf",
+            "page": 39,
+            "char_start": 0,
+            "char_end": 357,
+            "score": 0.02792120864410021,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 3,
+            "pdf": "4-IntroPython.pdf",
+            "page": 38,
+            "char_start": 0,
+            "char_end": 412,
+            "score": 0.027893738140417457,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 4,
+            "pdf": "4-IntroPython.pdf",
+            "page": 36,
+            "char_start": 0,
+            "char_end": 363,
+            "score": 0.027579737335834898,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 5,
+            "pdf": "4-IntroPython.pdf",
+            "page": 33,
+            "char_start": 0,
+            "char_end": 426,
+            "score": 0.027529761904761904,
+            "relevance_grade": 0
+          }
+        ]
+      },
+      {
+        "id": "py-13",
+        "question": "What separator can print() use between several values, and what spacing does it add by default?",
+        "recall_at_k": 1.0,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 1.0,
+        "top1_accuracy": 1.0,
+        "latency_seconds": 0.18083270000352059,
+        "first_relevant_rank": 1,
+        "ranked_results": [
+          {
+            "rank": 1,
+            "pdf": "4-IntroPython.pdf",
+            "page": 49,
+            "char_start": 0,
+            "char_end": 283,
+            "score": 0.03278688524590164,
+            "relevance_grade": 2
+          },
+          {
+            "rank": 2,
+            "pdf": "4-IntroPython.pdf",
+            "page": 46,
+            "char_start": 0,
+            "char_end": 477,
+            "score": 0.03149801587301587,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 3,
+            "pdf": "4-IntroPython.pdf",
+            "page": 23,
+            "char_start": 0,
+            "char_end": 472,
+            "score": 0.029709507042253523,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 4,
+            "pdf": "4-IntroPython.pdf",
+            "page": 26,
+            "char_start": 0,
+            "char_end": 282,
+            "score": 0.0265113137453563,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 5,
+            "pdf": "4-IntroPython.pdf",
+            "page": 48,
+            "char_start": 0,
+            "char_end": 296,
+            "score": 0.026373626373626377,
+            "relevance_grade": 0
+          }
+        ]
+      },
+      {
+        "id": "rag-01",
+        "question": "What limitations of language models motivate retrieval-augmented generation?",
+        "recall_at_k": 0.0,
+        "mrr_at_k": 0.0,
+        "ndcg_at_k": 0.0,
+        "top1_accuracy": 0.0,
+        "latency_seconds": 0.402994399992167,
+        "first_relevant_rank": null,
+        "ranked_results": [
+          {
+            "rank": 1,
+            "pdf": "2312.10997v5.pdf",
+            "page": 18,
+            "char_start": 2208,
+            "char_end": 3157,
+            "score": 0.032266458495966696,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 2,
+            "pdf": "2312.10997v5.pdf",
+            "page": 17,
+            "char_start": 7695,
+            "char_end": 8534,
+            "score": 0.03225806451612903,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 3,
+            "pdf": "2312.10997v5.pdf",
+            "page": 1,
+            "char_start": 4068,
+            "char_end": 5001,
+            "score": 0.030886196246139225,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 4,
+            "pdf": "2312.10997v5.pdf",
+            "page": 18,
+            "char_start": 3007,
+            "char_end": 3967,
+            "score": 0.030303030303030304,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 5,
+            "pdf": "2312.10997v5.pdf",
+            "page": 1,
+            "char_start": 0,
+            "char_end": 999,
+            "score": 0.029030910609857977,
+            "relevance_grade": 0
+          }
+        ]
+      },
+      {
+        "id": "rag-02",
+        "question": "What are the three main stages of a basic RAG question-answering pipeline?",
+        "recall_at_k": 1.0,
+        "mrr_at_k": 0.5,
+        "ndcg_at_k": 0.6309297535714574,
+        "top1_accuracy": 0.0,
+        "latency_seconds": 4.786726299993461,
+        "first_relevant_rank": 2,
+        "ranked_results": [
+          {
+            "rank": 1,
+            "pdf": "2312.10997v5.pdf",
+            "page": 12,
+            "char_start": 3104,
+            "char_end": 3838,
+            "score": 0.032018442622950824,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 2,
+            "pdf": "2312.10997v5.pdf",
+            "page": 3,
+            "char_start": 0,
+            "char_end": 813,
+            "score": 0.031054405392392875,
+            "relevance_grade": 2
+          },
+          {
+            "rank": 3,
+            "pdf": "2312.10997v5.pdf",
+            "page": 12,
+            "char_start": 4505,
+            "char_end": 5442,
+            "score": 0.030536130536130537,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 4,
+            "pdf": "2312.10997v5.pdf",
+            "page": 2,
+            "char_start": 1402,
+            "char_end": 2359,
+            "score": 0.03028233151183971,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 5,
+            "pdf": "2312.10997v5.pdf",
+            "page": 7,
+            "char_start": 0,
+            "char_end": 886,
+            "score": 0.029957522915269395,
+            "relevance_grade": 0
+          }
+        ]
+      },
+      {
+        "id": "rag-03",
+        "question": "How do Naive, Advanced, and Modular RAG differ in their organization and flexibility?",
+        "recall_at_k": 1.0,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 1.0,
+        "top1_accuracy": 1.0,
+        "latency_seconds": 0.20480809999571647,
+        "first_relevant_rank": 1,
+        "ranked_results": [
+          {
+            "rank": 1,
+            "pdf": "2312.10997v5.pdf",
+            "page": 4,
+            "char_start": 0,
+            "char_end": 708,
+            "score": 0.03278688524590164,
+            "relevance_grade": 2
+          },
+          {
+            "rank": 2,
+            "pdf": "2312.10997v5.pdf",
+            "page": 2,
+            "char_start": 1402,
+            "char_end": 2359,
+            "score": 0.03200204813108039,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 3,
+            "pdf": "2312.10997v5.pdf",
+            "page": 2,
+            "char_start": 2209,
+            "char_end": 3077,
+            "score": 0.03149801587301587,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 4,
+            "pdf": "2312.10997v5.pdf",
+            "page": 4,
+            "char_start": 1152,
+            "char_end": 2060,
+            "score": 0.03076923076923077,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 5,
+            "pdf": "2312.10997v5.pdf",
+            "page": 2,
+            "char_start": 601,
+            "char_end": 1552,
+            "score": 0.029857397504456328,
+            "relevance_grade": 0
+          }
+        ]
+      },
+      {
+        "id": "rag-04",
+        "question": "Which pre-retrieval techniques can improve an index or make a user query more suitable for retrieval?",
+        "recall_at_k": 0.0,
+        "mrr_at_k": 0.0,
+        "ndcg_at_k": 0.0,
+        "top1_accuracy": 0.0,
+        "latency_seconds": 0.2698471000039717,
+        "first_relevant_rank": null,
+        "ranked_results": [
+          {
+            "rank": 1,
+            "pdf": "2312.10997v5.pdf",
+            "page": 4,
+            "char_start": 558,
+            "char_end": 1302,
+            "score": 0.03278688524590164,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 2,
+            "pdf": "2312.10997v5.pdf",
+            "page": 10,
+            "char_start": 5404,
+            "char_end": 5968,
+            "score": 0.03125,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 3,
+            "pdf": "2312.10997v5.pdf",
+            "page": 9,
+            "char_start": 0,
+            "char_end": 981,
+            "score": 0.031024531024531024,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 4,
+            "pdf": "2312.10997v5.pdf",
+            "page": 11,
+            "char_start": 2071,
+            "char_end": 3008,
+            "score": 0.030309988518943745,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 5,
+            "pdf": "2312.10997v5.pdf",
+            "page": 11,
+            "char_start": 0,
+            "char_end": 728,
+            "score": 0.028594771241830064,
+            "relevance_grade": 0
+          }
+        ]
+      },
+      {
+        "id": "rag-05",
+        "question": "What kinds of data sources can a RAG retriever use, and what is an example of unstructured text data?",
+        "recall_at_k": 1.0,
+        "mrr_at_k": 0.2,
+        "ndcg_at_k": 0.38685280723454163,
+        "top1_accuracy": 0.0,
+        "latency_seconds": 0.17769440000120085,
+        "first_relevant_rank": 5,
+        "ranked_results": [
+          {
+            "rank": 1,
+            "pdf": "2312.10997v5.pdf",
+            "page": 7,
+            "char_start": 0,
+            "char_end": 886,
+            "score": 0.03278688524590164,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 2,
+            "pdf": "2312.10997v5.pdf",
+            "page": 5,
+            "char_start": 5155,
+            "char_end": 6143,
+            "score": 0.030776515151515152,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 3,
+            "pdf": "2312.10997v5.pdf",
+            "page": 7,
+            "char_start": 2878,
+            "char_end": 3854,
+            "score": 0.03055037313432836,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 4,
+            "pdf": "2312.10997v5.pdf",
+            "page": 7,
+            "char_start": 2109,
+            "char_end": 3028,
+            "score": 0.030090497737556562,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 5,
+            "pdf": "2312.10997v5.pdf",
+            "page": 7,
+            "char_start": 736,
+            "char_end": 1439,
+            "score": 0.028474711270410194,
+            "relevance_grade": 2
+          }
+        ]
+      },
+      {
+        "id": "rag-06",
+        "question": "Why can tables in PDFs be difficult for text-oriented RAG, and what handling approaches are discussed?",
+        "recall_at_k": 1.0,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 1.0,
+        "top1_accuracy": 1.0,
+        "latency_seconds": 0.1656351999990875,
+        "first_relevant_rank": 1,
+        "ranked_results": [
+          {
+            "rank": 1,
+            "pdf": "2312.10997v5.pdf",
+            "page": 7,
+            "char_start": 2109,
+            "char_end": 3028,
+            "score": 0.03278688524590164,
+            "relevance_grade": 2
+          },
+          {
+            "rank": 2,
+            "pdf": "2312.10997v5.pdf",
+            "page": 2,
+            "char_start": 601,
+            "char_end": 1552,
+            "score": 0.029850746268656716,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 3,
+            "pdf": "2312.10997v5.pdf",
+            "page": 8,
+            "char_start": 1632,
+            "char_end": 2547,
+            "score": 0.02803921568627451,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 4,
+            "pdf": "2312.10997v5.pdf",
+            "page": 7,
+            "char_start": 2878,
+            "char_end": 3854,
+            "score": 0.02792120864410021,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 5,
+            "pdf": "2312.10997v5.pdf",
+            "page": 3,
+            "char_start": 663,
+            "char_end": 1610,
+            "score": 0.026438310608579978,
+            "relevance_grade": 0
+          }
+        ]
+      },
+      {
+        "id": "rag-07",
+        "question": "What does proposition-level retrieval mean, and why might it improve retrieval precision?",
+        "recall_at_k": 1.0,
+        "mrr_at_k": 0.3333333333333333,
+        "ndcg_at_k": 0.5,
+        "top1_accuracy": 0.0,
+        "latency_seconds": 0.16560870000103023,
+        "first_relevant_rank": 3,
+        "ranked_results": [
+          {
+            "rank": 1,
+            "pdf": "2312.10997v5.pdf",
+            "page": 8,
+            "char_start": 0,
+            "char_end": 986,
+            "score": 0.03252247488101534,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 2,
+            "pdf": "2312.10997v5.pdf",
+            "page": 3,
+            "char_start": 0,
+            "char_end": 813,
+            "score": 0.030117753623188408,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 3,
+            "pdf": "2312.10997v5.pdf",
+            "page": 8,
+            "char_start": 836,
+            "char_end": 1782,
+            "score": 0.029857397504456328,
+            "relevance_grade": 2
+          },
+          {
+            "rank": 4,
+            "pdf": "2312.10997v5.pdf",
+            "page": 11,
+            "char_start": 2071,
+            "char_end": 3008,
+            "score": 0.029273504273504274,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 5,
+            "pdf": "2312.10997v5.pdf",
+            "page": 12,
+            "char_start": 0,
+            "char_end": 989,
+            "score": 0.026779422128259338,
+            "relevance_grade": 0
+          }
+        ]
+      },
+      {
+        "id": "rag-08",
+        "question": "How does fixed-size chunking work, and what retrieval trade-off does chunk size create?",
+        "recall_at_k": 1.0,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 1.0,
+        "top1_accuracy": 1.0,
+        "latency_seconds": 0.15837869999813847,
+        "first_relevant_rank": 1,
+        "ranked_results": [
+          {
+            "rank": 1,
+            "pdf": "2312.10997v5.pdf",
+            "page": 8,
+            "char_start": 2397,
+            "char_end": 3395,
+            "score": 0.03177805800756621,
+            "relevance_grade": 2
+          },
+          {
+            "rank": 2,
+            "pdf": "2312.10997v5.pdf",
+            "page": 7,
+            "char_start": 3704,
+            "char_end": 4187,
+            "score": 0.03128054740957967,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 3,
+            "pdf": "2312.10997v5.pdf",
+            "page": 18,
+            "char_start": 8453,
+            "char_end": 9004,
+            "score": 0.02878726010616578,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 4,
+            "pdf": "2312.10997v5.pdf",
+            "page": 6,
+            "char_start": 2363,
+            "char_end": 3345,
+            "score": 0.026334026334026334,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 5,
+            "pdf": "2312.10997v5.pdf",
+            "page": 9,
+            "char_start": 5613,
+            "char_end": 6335,
+            "score": 0.026200135226504394,
+            "relevance_grade": 0
+          }
+        ]
+      },
+      {
+        "id": "rag-09",
+        "question": "What document or chunk metadata can be attached to retrieved passages, and what can that help with?",
+        "recall_at_k": 1.0,
+        "mrr_at_k": 0.5,
+        "ndcg_at_k": 0.6309297535714574,
+        "top1_accuracy": 0.0,
+        "latency_seconds": 0.18018019999726675,
+        "first_relevant_rank": 2,
+        "ranked_results": [
+          {
+            "rank": 1,
+            "pdf": "2312.10997v5.pdf",
+            "page": 15,
+            "char_start": 835,
+            "char_end": 1798,
+            "score": 0.02900988017658188,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 2,
+            "pdf": "2312.10997v5.pdf",
+            "page": 8,
+            "char_start": 3951,
+            "char_end": 4934,
+            "score": 0.02797067901234568,
+            "relevance_grade": 2
+          },
+          {
+            "rank": 3,
+            "pdf": "2312.10997v5.pdf",
+            "page": 6,
+            "char_start": 782,
+            "char_end": 1720,
+            "score": 0.026120660599932594,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 4,
+            "pdf": "2312.10997v5.pdf",
+            "page": 18,
+            "char_start": 8453,
+            "char_end": 9004,
+            "score": 0.02506265664160401,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 5,
+            "pdf": "2312.10997v5.pdf",
+            "page": 8,
+            "char_start": 1632,
+            "char_end": 2547,
+            "score": 0.02474946856969329,
+            "relevance_grade": 0
+          }
+        ]
+      },
+      {
+        "id": "rag-10",
+        "question": "How can query expansion help retrieve information for a complex question?",
+        "recall_at_k": 1.0,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 1.0,
+        "top1_accuracy": 1.0,
+        "latency_seconds": 0.16235250000318047,
+        "first_relevant_rank": 1,
+        "ranked_results": [
+          {
+            "rank": 1,
+            "pdf": "2312.10997v5.pdf",
+            "page": 8,
+            "char_start": 4785,
+            "char_end": 5740,
+            "score": 0.03252247488101534,
+            "relevance_grade": 2
+          },
+          {
+            "rank": 2,
+            "pdf": "2312.10997v5.pdf",
+            "page": 8,
+            "char_start": 5591,
+            "char_end": 6275,
+            "score": 0.03252247488101534,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 3,
+            "pdf": "2312.10997v5.pdf",
+            "page": 8,
+            "char_start": 3951,
+            "char_end": 4934,
+            "score": 0.031746031746031744,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 4,
+            "pdf": "2312.10997v5.pdf",
+            "page": 4,
+            "char_start": 558,
+            "char_end": 1302,
+            "score": 0.030776515151515152,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 5,
+            "pdf": "2312.10997v5.pdf",
+            "page": 3,
+            "char_start": 2013,
+            "char_end": 2839,
+            "score": 0.030309988518943745,
+            "relevance_grade": 0
+          }
+        ]
+      },
+      {
+        "id": "rag-11",
+        "question": "How does HyDE change the representation used to retrieve documents?",
+        "recall_at_k": 0.0,
+        "mrr_at_k": 0.0,
+        "ndcg_at_k": 0.0,
+        "top1_accuracy": 0.0,
+        "latency_seconds": 0.30126030000974424,
+        "first_relevant_rank": null,
+        "ranked_results": [
+          {
+            "rank": 1,
+            "pdf": "2312.10997v5.pdf",
+            "page": 9,
+            "char_start": 831,
+            "char_end": 1800,
+            "score": 0.032266458495966696,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 2,
+            "pdf": "2312.10997v5.pdf",
+            "page": 3,
+            "char_start": 2013,
+            "char_end": 2839,
+            "score": 0.029709507042253523,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 3,
+            "pdf": "2312.10997v5.pdf",
+            "page": 8,
+            "char_start": 4785,
+            "char_end": 5740,
+            "score": 0.029418126757516764,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 4,
+            "pdf": "2312.10997v5.pdf",
+            "page": 12,
+            "char_start": 0,
+            "char_end": 989,
+            "score": 0.027046783625730993,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 5,
+            "pdf": "2312.10997v5.pdf",
+            "page": 5,
+            "char_start": 5155,
+            "char_end": 6143,
+            "score": 0.02684684684684685,
+            "relevance_grade": 0
+          }
+        ]
+      },
+      {
+        "id": "rag-12",
+        "question": "What is query routing in a RAG system, and what can determine the route?",
+        "recall_at_k": 1.0,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 1.0,
+        "top1_accuracy": 1.0,
+        "latency_seconds": 0.6275543999945512,
+        "first_relevant_rank": 1,
+        "ranked_results": [
+          {
+            "rank": 1,
+            "pdf": "2312.10997v5.pdf",
+            "page": 9,
+            "char_start": 3265,
+            "char_end": 4080,
+            "score": 0.03278688524590164,
+            "relevance_grade": 2
+          },
+          {
+            "rank": 2,
+            "pdf": "2312.10997v5.pdf",
+            "page": 11,
+            "char_start": 0,
+            "char_end": 728,
+            "score": 0.02967032967032967,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 3,
+            "pdf": "2312.10997v5.pdf",
+            "page": 3,
+            "char_start": 2013,
+            "char_end": 2839,
+            "score": 0.02886002886002886,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 4,
+            "pdf": "2312.10997v5.pdf",
+            "page": 4,
+            "char_start": 1152,
+            "char_end": 2060,
+            "score": 0.02878726010616578,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 5,
+            "pdf": "2312.10997v5.pdf",
+            "page": 5,
+            "char_start": 0,
+            "char_end": 913,
+            "score": 0.028665028665028666,
+            "relevance_grade": 0
+          }
+        ]
+      },
+      {
+        "id": "rag-13",
+        "question": "How does hybrid retrieval combine signals, and how are dense retrieval results commonly compared?",
+        "recall_at_k": 0.0,
+        "mrr_at_k": 0.0,
+        "ndcg_at_k": 0.0,
+        "top1_accuracy": 0.0,
+        "latency_seconds": 0.45885689998976886,
+        "first_relevant_rank": null,
+        "ranked_results": [
+          {
+            "rank": 1,
+            "pdf": "2312.10997v5.pdf",
+            "page": 9,
+            "char_start": 5613,
+            "char_end": 6335,
+            "score": 0.02964426877470356,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 2,
+            "pdf": "2312.10997v5.pdf",
+            "page": 7,
+            "char_start": 3704,
+            "char_end": 4187,
+            "score": 0.028949545078577336,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 3,
+            "pdf": "2312.10997v5.pdf",
+            "page": 11,
+            "char_start": 2071,
+            "char_end": 3008,
+            "score": 0.02821939586645469,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 4,
+            "pdf": "2312.10997v5.pdf",
+            "page": 5,
+            "char_start": 2859,
+            "char_end": 3784,
+            "score": 0.027637721755368813,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 5,
+            "pdf": "2312.10997v5.pdf",
+            "page": 9,
+            "char_start": 0,
+            "char_end": 981,
+            "score": 0.026702720973466286,
+            "relevance_grade": 0
+          }
+        ]
+      },
+      {
+        "id": "rag-14",
+        "question": "What is the purpose of reranking retrieved chunks before generation?",
+        "recall_at_k": 1.0,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 1.0,
+        "top1_accuracy": 1.0,
+        "latency_seconds": 0.14651460001186933,
+        "first_relevant_rank": 1,
+        "ranked_results": [
+          {
+            "rank": 1,
+            "pdf": "2312.10997v5.pdf",
+            "page": 10,
+            "char_start": 2265,
+            "char_end": 3183,
+            "score": 0.03278688524590164,
+            "relevance_grade": 2
+          },
+          {
+            "rank": 2,
+            "pdf": "2312.10997v5.pdf",
+            "page": 3,
+            "char_start": 663,
+            "char_end": 1610,
+            "score": 0.03125,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 3,
+            "pdf": "2312.10997v5.pdf",
+            "page": 8,
+            "char_start": 2397,
+            "char_end": 3395,
+            "score": 0.030017921146953404,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 4,
+            "pdf": "2312.10997v5.pdf",
+            "page": 3,
+            "char_start": 0,
+            "char_end": 813,
+            "score": 0.02946236559139785,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 5,
+            "pdf": "2312.10997v5.pdf",
+            "page": 11,
+            "char_start": 578,
+            "char_end": 1503,
+            "score": 0.029437229437229435,
+            "relevance_grade": 0
+          }
+        ]
+      },
+      {
+        "id": "rag-15",
+        "question": "Why might a RAG system select or compress context instead of passing every retrieved passage to the generator?",
+        "recall_at_k": 0.0,
+        "mrr_at_k": 0.0,
+        "ndcg_at_k": 0.0,
+        "top1_accuracy": 0.0,
+        "latency_seconds": 2.6596293000038713,
+        "first_relevant_rank": null,
+        "ranked_results": [
+          {
+            "rank": 1,
+            "pdf": "2312.10997v5.pdf",
+            "page": 3,
+            "char_start": 2013,
+            "char_end": 2839,
+            "score": 0.032018442622950824,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 2,
+            "pdf": "2312.10997v5.pdf",
+            "page": 12,
+            "char_start": 2490,
+            "char_end": 3254,
+            "score": 0.030798389007344232,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 3,
+            "pdf": "2312.10997v5.pdf",
+            "page": 5,
+            "char_start": 4444,
+            "char_end": 5304,
+            "score": 0.028594771241830064,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 4,
+            "pdf": "2312.10997v5.pdf",
+            "page": 7,
+            "char_start": 1289,
+            "char_end": 2259,
+            "score": 0.028577260665441927,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 5,
+            "pdf": "2312.10997v5.pdf",
+            "page": 12,
+            "char_start": 839,
+            "char_end": 1790,
+            "score": 0.026860955056179775,
+            "relevance_grade": 0
+          }
+        ]
+      },
+      {
+        "id": "rag-16",
+        "question": "How do iterative, recursive, and adaptive retrieval differ?",
+        "recall_at_k": 1.0,
+        "mrr_at_k": 0.5,
+        "ndcg_at_k": 0.6590018048024133,
+        "top1_accuracy": 0.0,
+        "latency_seconds": 1.7743755999981659,
+        "first_relevant_rank": 2,
+        "ranked_results": [
+          {
+            "rank": 1,
+            "pdf": "2312.10997v5.pdf",
+            "page": 11,
+            "char_start": 1353,
+            "char_end": 2221,
+            "score": 0.032266458495966696,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 2,
+            "pdf": "2312.10997v5.pdf",
+            "page": 11,
+            "char_start": 0,
+            "char_end": 728,
+            "score": 0.03225806451612903,
+            "relevance_grade": 2
+          },
+          {
+            "rank": 3,
+            "pdf": "2312.10997v5.pdf",
+            "page": 11,
+            "char_start": 2071,
+            "char_end": 3008,
+            "score": 0.02976190476190476,
+            "relevance_grade": 1
+          },
+          {
+            "rank": 4,
+            "pdf": "2312.10997v5.pdf",
+            "page": 4,
+            "char_start": 558,
+            "char_end": 1302,
+            "score": 0.02964426877470356,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 5,
+            "pdf": "2312.10997v5.pdf",
+            "page": 10,
+            "char_start": 5404,
+            "char_end": 5968,
+            "score": 0.02871794871794872,
+            "relevance_grade": 0
+          }
+        ]
+      },
+      {
+        "id": "rag-17",
+        "question": "Which measures or quality dimensions are used to evaluate RAG retrieval and generated answers?",
+        "recall_at_k": 0.5,
+        "mrr_at_k": 0.5,
+        "ndcg_at_k": 0.52129602861432,
+        "top1_accuracy": 0.0,
+        "latency_seconds": 0.1463213000097312,
+        "first_relevant_rank": 2,
+        "ranked_results": [
+          {
+            "rank": 1,
+            "pdf": "2312.10997v5.pdf",
+            "page": 12,
+            "char_start": 1640,
+            "char_end": 2639,
+            "score": 0.03252247488101534,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 2,
+            "pdf": "2312.10997v5.pdf",
+            "page": 12,
+            "char_start": 2490,
+            "char_end": 3254,
+            "score": 0.032266458495966696,
+            "relevance_grade": 2
+          },
+          {
+            "rank": 3,
+            "pdf": "2312.10997v5.pdf",
+            "page": 12,
+            "char_start": 839,
+            "char_end": 1790,
+            "score": 0.03125763125763126,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 4,
+            "pdf": "2312.10997v5.pdf",
+            "page": 12,
+            "char_start": 4505,
+            "char_end": 5442,
+            "score": 0.030017921146953404,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 5,
+            "pdf": "2312.10997v5.pdf",
+            "page": 12,
+            "char_start": 3688,
+            "char_end": 4655,
+            "score": 0.029850746268656716,
+            "relevance_grade": 0
+          }
+        ]
+      },
+      {
+        "id": "rag-18",
+        "question": "Which evaluation frameworks are compared for retrieval and generation quality?",
+        "recall_at_k": 1.0,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 1.0,
+        "top1_accuracy": 1.0,
+        "latency_seconds": 0.11234310000145342,
+        "first_relevant_rank": 1,
+        "ranked_results": [
+          {
+            "rank": 1,
+            "pdf": "2312.10997v5.pdf",
+            "page": 15,
+            "char_start": 0,
+            "char_end": 984,
+            "score": 0.03278688524590164,
+            "relevance_grade": 2
+          },
+          {
+            "rank": 2,
+            "pdf": "2312.10997v5.pdf",
+            "page": 12,
+            "char_start": 1640,
+            "char_end": 2639,
+            "score": 0.03200204813108039,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 3,
+            "pdf": "2312.10997v5.pdf",
+            "page": 12,
+            "char_start": 839,
+            "char_end": 1790,
+            "score": 0.031754032258064516,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 4,
+            "pdf": "2312.10997v5.pdf",
+            "page": 15,
+            "char_start": 835,
+            "char_end": 1798,
+            "score": 0.030776515151515152,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 5,
+            "pdf": "2312.10997v5.pdf",
+            "page": 12,
+            "char_start": 5292,
+            "char_end": 6066,
+            "score": 0.030309988518943745,
+            "relevance_grade": 0
+          }
+        ]
+      },
+      {
+        "id": "rag-19",
+        "question": "How is RAG being extended beyond text question answering to other data modalities?",
+        "recall_at_k": 1.0,
+        "mrr_at_k": 0.25,
+        "ndcg_at_k": 0.4306765580733931,
+        "top1_accuracy": 0.0,
+        "latency_seconds": 0.8945297000027495,
+        "first_relevant_rank": 4,
+        "ranked_results": [
+          {
+            "rank": 1,
+            "pdf": "2312.10997v5.pdf",
+            "page": 12,
+            "char_start": 3104,
+            "char_end": 3838,
+            "score": 0.031009615384615385,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 2,
+            "pdf": "2312.10997v5.pdf",
+            "page": 7,
+            "char_start": 0,
+            "char_end": 886,
+            "score": 0.030886196246139225,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 3,
+            "pdf": "2312.10997v5.pdf",
+            "page": 2,
+            "char_start": 601,
+            "char_end": 1552,
+            "score": 0.030017921146953404,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 4,
+            "pdf": "2312.10997v5.pdf",
+            "page": 16,
+            "char_start": 1448,
+            "char_end": 2428,
+            "score": 0.029083245521601686,
+            "relevance_grade": 2
+          },
+          {
+            "rank": 5,
+            "pdf": "2312.10997v5.pdf",
+            "page": 16,
+            "char_start": 680,
+            "char_end": 1598,
+            "score": 0.027745885954841176,
+            "relevance_grade": 0
+          }
+        ]
+      },
+      {
+        "id": "nist-01",
+        "question": "How does the AI RMF define risk in relation to likelihood and the consequences of an event?",
+        "recall_at_k": 1.0,
+        "mrr_at_k": 0.5,
+        "ndcg_at_k": 0.6309297535714574,
+        "top1_accuracy": 0.0,
+        "latency_seconds": 0.5307519000052707,
+        "first_relevant_rank": 2,
+        "ranked_results": [
+          {
+            "rank": 1,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 9,
+            "char_start": 0,
+            "char_end": 824,
+            "score": 0.03278688524590164,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 2,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 9,
+            "char_start": 674,
+            "char_end": 1596,
+            "score": 0.030621785881252923,
+            "relevance_grade": 2
+          },
+          {
+            "rank": 3,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 45,
+            "char_start": 0,
+            "char_end": 944,
+            "score": 0.030158730158730156,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 4,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 12,
+            "char_start": 0,
+            "char_end": 888,
+            "score": 0.028594771241830064,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 5,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 10,
+            "char_start": 0,
+            "char_end": 722,
+            "score": 0.028404512489927477,
+            "relevance_grade": 0
+          }
+        ]
+      },
+      {
+        "id": "nist-02",
+        "question": "Does an inability to measure an AI risk mean the system is necessarily high-risk or low-risk?",
+        "recall_at_k": 1.0,
+        "mrr_at_k": 0.5,
+        "ndcg_at_k": 0.6309297535714574,
+        "top1_accuracy": 0.0,
+        "latency_seconds": 0.1471715000079712,
+        "first_relevant_rank": 2,
+        "ranked_results": [
+          {
+            "rank": 1,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 10,
+            "char_start": 0,
+            "char_end": 722,
+            "score": 0.03278688524590164,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 2,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 10,
+            "char_start": 572,
+            "char_end": 1519,
+            "score": 0.03225806451612903,
+            "relevance_grade": 2
+          },
+          {
+            "rank": 3,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 11,
+            "char_start": 0,
+            "char_end": 787,
+            "score": 0.029857397504456328,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 4,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 6,
+            "char_start": 595,
+            "char_end": 1560,
+            "score": 0.0288981288981289,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 5,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 13,
+            "char_start": 0,
+            "char_end": 970,
+            "score": 0.028782894736842105,
+            "relevance_grade": 0
+          }
+        ]
+      },
+      {
+        "id": "nist-03",
+        "question": "What can go wrong when AI risk metrics ignore context or differences between affected groups?",
+        "recall_at_k": 1.0,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 1.0,
+        "top1_accuracy": 1.0,
+        "latency_seconds": 0.1503936000081012,
+        "first_relevant_rank": 1,
+        "ranked_results": [
+          {
+            "rank": 1,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 11,
+            "char_start": 637,
+            "char_end": 1590,
+            "score": 0.03252247488101534,
+            "relevance_grade": 2
+          },
+          {
+            "rank": 2,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 11,
+            "char_start": 0,
+            "char_end": 787,
+            "score": 0.032266458495966696,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 3,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 13,
+            "char_start": 821,
+            "char_end": 1780,
+            "score": 0.02871794871794872,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 4,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 13,
+            "char_start": 0,
+            "char_end": 970,
+            "score": 0.02786377708978328,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 5,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 36,
+            "char_start": 793,
+            "char_end": 1763,
+            "score": 0.027673192771084338,
+            "relevance_grade": 0
+          }
+        ]
+      },
+      {
+        "id": "nist-04",
+        "question": "What does risk tolerance mean, and why does it vary across organizations or use cases?",
+        "recall_at_k": 1.0,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 1.0,
+        "top1_accuracy": 1.0,
+        "latency_seconds": 0.1348678999929689,
+        "first_relevant_rank": 1,
+        "ranked_results": [
+          {
+            "rank": 1,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 12,
+            "char_start": 0,
+            "char_end": 888,
+            "score": 0.03278688524590164,
+            "relevance_grade": 2
+          },
+          {
+            "rank": 2,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 12,
+            "char_start": 1530,
+            "char_end": 2460,
+            "score": 0.03128054740957967,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 3,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 12,
+            "char_start": 738,
+            "char_end": 1680,
+            "score": 0.029386529386529386,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 4,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 10,
+            "char_start": 572,
+            "char_end": 1519,
+            "score": 0.02871794871794872,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 5,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 47,
+            "char_start": 838,
+            "char_end": 1791,
+            "score": 0.028438886647841874,
+            "relevance_grade": 0
+          }
+        ]
+      },
+      {
+        "id": "nist-05",
+        "question": "How should organizations respond to their highest-priority AI risks, including unacceptable residual risk?",
+        "recall_at_k": 1.0,
+        "mrr_at_k": 0.5,
+        "ndcg_at_k": 0.6309297535714574,
+        "top1_accuracy": 0.0,
+        "latency_seconds": 0.13166199999977835,
+        "first_relevant_rank": 2,
+        "ranked_results": [
+          {
+            "rank": 1,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 13,
+            "char_start": 1630,
+            "char_end": 2482,
+            "score": 0.03278688524590164,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 2,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 13,
+            "char_start": 0,
+            "char_end": 970,
+            "score": 0.03200204813108039,
+            "relevance_grade": 2
+          },
+          {
+            "rank": 3,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 13,
+            "char_start": 821,
+            "char_end": 1780,
+            "score": 0.0304147465437788,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 4,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 10,
+            "char_start": 1369,
+            "char_end": 1891,
+            "score": 0.030117753623188408,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 5,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 10,
+            "char_start": 0,
+            "char_end": 722,
+            "score": 0.029877369007803793,
+            "relevance_grade": 0
+          }
+        ]
+      },
+      {
+        "id": "nist-06",
+        "question": "Why does AI risk management call for diverse perspectives and actors across the lifecycle?",
+        "recall_at_k": 1.0,
+        "mrr_at_k": 0.25,
+        "ndcg_at_k": 0.4306765580733931,
+        "top1_accuracy": 0.0,
+        "latency_seconds": 0.1523968999972567,
+        "first_relevant_rank": 4,
+        "ranked_results": [
+          {
+            "rank": 1,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 14,
+            "char_start": 0,
+            "char_end": 858,
+            "score": 0.03200204813108039,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 2,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 11,
+            "char_start": 637,
+            "char_end": 1590,
+            "score": 0.03125763125763126,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 3,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 15,
+            "char_start": 808,
+            "char_end": 1586,
+            "score": 0.03125,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 4,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 14,
+            "char_start": 709,
+            "char_end": 1671,
+            "score": 0.029906956136464335,
+            "relevance_grade": 2
+          },
+          {
+            "rank": 5,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 15,
+            "char_start": 0,
+            "char_end": 958,
+            "score": 0.02967032967032967,
+            "relevance_grade": 0
+          }
+        ]
+      },
+      {
+        "id": "nist-07",
+        "question": "Which characteristics does NIST identify as important for trustworthy AI systems?",
+        "recall_at_k": 1.0,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 1.0,
+        "top1_accuracy": 1.0,
+        "latency_seconds": 0.11942409999028314,
+        "first_relevant_rank": 1,
+        "ranked_results": [
+          {
+            "rank": 1,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 17,
+            "char_start": 0,
+            "char_end": 955,
+            "score": 0.03278688524590164,
+            "relevance_grade": 2
+          },
+          {
+            "rank": 2,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 7,
+            "char_start": 2231,
+            "char_end": 3096,
+            "score": 0.03149801587301587,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 3,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 17,
+            "char_start": 805,
+            "char_end": 1786,
+            "score": 0.03128054740957967,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 4,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 10,
+            "char_start": 0,
+            "char_end": 722,
+            "score": 0.03076923076923077,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 5,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 44,
+            "char_start": 0,
+            "char_end": 754,
+            "score": 0.029437229437229435,
+            "relevance_grade": 0
+          }
+        ]
+      },
+      {
+        "id": "nist-08",
+        "question": "What makes an accuracy test set appropriate for evaluating an AI system?",
+        "recall_at_k": 1.0,
+        "mrr_at_k": 0.3333333333333333,
+        "ndcg_at_k": 0.5,
+        "top1_accuracy": 0.0,
+        "latency_seconds": 0.1386804000067059,
+        "first_relevant_rank": 3,
+        "ranked_results": [
+          {
+            "rank": 1,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 19,
+            "char_start": 0,
+            "char_end": 882,
+            "score": 0.03177805800756621,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 2,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 18,
+            "char_start": 1580,
+            "char_end": 2570,
+            "score": 0.0293236301369863,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 3,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 19,
+            "char_start": 732,
+            "char_end": 1436,
+            "score": 0.0287391216352965,
+            "relevance_grade": 2
+          },
+          {
+            "rank": 4,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 43,
+            "char_start": 2340,
+            "char_end": 2695,
+            "score": 0.02821939586645469,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 5,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 33,
+            "char_start": 1497,
+            "char_end": 2437,
+            "score": 0.028068137824235385,
+            "relevance_grade": 0
+          }
+        ]
+      },
+      {
+        "id": "nist-09",
+        "question": "What practices support AI safety, and how are security and resilience characterized?",
+        "recall_at_k": 1.0,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 0.8772153153380493,
+        "top1_accuracy": 1.0,
+        "latency_seconds": 0.13220459999865852,
+        "first_relevant_rank": 1,
+        "ranked_results": [
+          {
+            "rank": 1,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 20,
+            "char_start": 1279,
+            "char_end": 2053,
+            "score": 0.031754032258064516,
+            "relevance_grade": 2
+          },
+          {
+            "rank": 2,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 28,
+            "char_start": 1648,
+            "char_end": 2476,
+            "score": 0.030017921146953404,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 3,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 19,
+            "char_start": 2050,
+            "char_end": 2782,
+            "score": 0.02964426877470356,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 4,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 20,
+            "char_start": 0,
+            "char_end": 712,
+            "score": 0.029571646010002173,
+            "relevance_grade": 2
+          },
+          {
+            "rank": 5,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 35,
+            "char_start": 0,
+            "char_end": 977,
+            "score": 0.028588564574170333,
+            "relevance_grade": 0
+          }
+        ]
+      },
+      {
+        "id": "nist-10",
+        "question": "How are accountability and transparency related, and what does transparency reveal?",
+        "recall_at_k": 1.0,
+        "mrr_at_k": 0.25,
+        "ndcg_at_k": 0.4306765580733931,
+        "top1_accuracy": 0.0,
+        "latency_seconds": 0.15002190000086557,
+        "first_relevant_rank": 4,
+        "ranked_results": [
+          {
+            "rank": 1,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 20,
+            "char_start": 1903,
+            "char_end": 2675,
+            "score": 0.03278688524590164,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 2,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 21,
+            "char_start": 786,
+            "char_end": 1539,
+            "score": 0.03225806451612903,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 3,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 20,
+            "char_start": 2526,
+            "char_end": 3124,
+            "score": 0.03149801587301587,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 4,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 21,
+            "char_start": 0,
+            "char_end": 936,
+            "score": 0.031024531024531024,
+            "relevance_grade": 2
+          },
+          {
+            "rank": 5,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 21,
+            "char_start": 1389,
+            "char_end": 2362,
+            "score": 0.03076923076923077,
+            "relevance_grade": 0
+          }
+        ]
+      },
+      {
+        "id": "nist-11",
+        "question": "How does the framework distinguish transparency, explainability, and interpretability?",
+        "recall_at_k": 1.0,
+        "mrr_at_k": 0.5,
+        "ndcg_at_k": 0.6278397607958708,
+        "top1_accuracy": 0.0,
+        "latency_seconds": 0.15728509999462403,
+        "first_relevant_rank": 2,
+        "ranked_results": [
+          {
+            "rank": 1,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 21,
+            "char_start": 1389,
+            "char_end": 2362,
+            "score": 0.03252247488101534,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 2,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 22,
+            "char_start": 0,
+            "char_end": 752,
+            "score": 0.03252247488101534,
+            "relevance_grade": 2
+          },
+          {
+            "rank": 3,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 21,
+            "char_start": 2212,
+            "char_end": 2927,
+            "score": 0.030798389007344232,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 4,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 20,
+            "char_start": 2526,
+            "char_end": 3124,
+            "score": 0.030536130536130537,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 5,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 22,
+            "char_start": 602,
+            "char_end": 1542,
+            "score": 0.030536130536130537,
+            "relevance_grade": 1
+          }
+        ]
+      },
+      {
+        "id": "nist-12",
+        "question": "What does privacy mean in the AI RMF, beyond merely keeping data secret?",
+        "recall_at_k": 1.0,
+        "mrr_at_k": 0.3333333333333333,
+        "ndcg_at_k": 0.5,
+        "top1_accuracy": 0.0,
+        "latency_seconds": 0.1381173999980092,
+        "first_relevant_rank": 3,
+        "ranked_results": [
+          {
+            "rank": 1,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 44,
+            "char_start": 0,
+            "char_end": 754,
+            "score": 0.032266458495966696,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 2,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 22,
+            "char_start": 0,
+            "char_end": 752,
+            "score": 0.03149801587301587,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 3,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 22,
+            "char_start": 602,
+            "char_end": 1542,
+            "score": 0.030886196246139225,
+            "relevance_grade": 2
+          },
+          {
+            "rank": 4,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 44,
+            "char_start": 604,
+            "char_end": 1536,
+            "score": 0.030834914611005692,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 5,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 44,
+            "char_start": 1387,
+            "char_end": 2361,
+            "score": 0.03055037313432836,
+            "relevance_grade": 0
+          }
+        ]
+      },
+      {
+        "id": "nist-13",
+        "question": "Which three categories of AI bias does NIST say should be considered?",
+        "recall_at_k": 1.0,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 1.0,
+        "top1_accuracy": 1.0,
+        "latency_seconds": 0.11684400000376627,
+        "first_relevant_rank": 1,
+        "ranked_results": [
+          {
+            "rank": 1,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 23,
+            "char_start": 0,
+            "char_end": 914,
+            "score": 0.03278688524590164,
+            "relevance_grade": 2
+          },
+          {
+            "rank": 2,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 23,
+            "char_start": 764,
+            "char_end": 1671,
+            "score": 0.03225806451612903,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 3,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 25,
+            "char_start": 0,
+            "char_end": 833,
+            "score": 0.02946912242686891,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 4,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 34,
+            "char_start": 0,
+            "char_end": 932,
+            "score": 0.028612012987012988,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 5,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 22,
+            "char_start": 1974,
+            "char_end": 2828,
+            "score": 0.028484848484848488,
+            "relevance_grade": 0
+          }
+        ]
+      },
+      {
+        "id": "nist-14",
+        "question": "What are the four functions of the AI RMF Core, and how is governance positioned among them?",
+        "recall_at_k": 1.0,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 1.0,
+        "top1_accuracy": 1.0,
+        "latency_seconds": 0.1429952000034973,
+        "first_relevant_rank": 1,
+        "ranked_results": [
+          {
+            "rank": 1,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 25,
+            "char_start": 0,
+            "char_end": 833,
+            "score": 0.03278688524590164,
+            "relevance_grade": 2
+          },
+          {
+            "rank": 2,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 25,
+            "char_start": 683,
+            "char_end": 1286,
+            "score": 0.03200204813108039,
+            "relevance_grade": 1
+          },
+          {
+            "rank": 3,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 8,
+            "char_start": 0,
+            "char_end": 873,
+            "score": 0.031754032258064516,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 4,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 26,
+            "char_start": 622,
+            "char_end": 1585,
+            "score": 0.031009615384615385,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 5,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 15,
+            "char_start": 808,
+            "char_end": 1586,
+            "score": 0.02690501986276634,
+            "relevance_grade": 0
+          }
+        ]
+      },
+      {
+        "id": "nist-15",
+        "question": "Why is GOVERN described as a cross-cutting AI RMF function?",
+        "recall_at_k": 0.0,
+        "mrr_at_k": 0.0,
+        "ndcg_at_k": 0.0,
+        "top1_accuracy": 0.0,
+        "latency_seconds": 0.11381099998834543,
+        "first_relevant_rank": null,
+        "ranked_results": [
+          {
+            "rank": 1,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 25,
+            "char_start": 0,
+            "char_end": 833,
+            "score": 0.03225806451612903,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 2,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 25,
+            "char_start": 683,
+            "char_end": 1286,
+            "score": 0.03177805800756621,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 3,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 27,
+            "char_start": 825,
+            "char_end": 1609,
+            "score": 0.03149801587301587,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 4,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 5,
+            "char_start": 1571,
+            "char_end": 1838,
+            "score": 0.03009207275993712,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 5,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 39,
+            "char_start": 0,
+            "char_end": 470,
+            "score": 0.02964426877470356,
+            "relevance_grade": 0
+          }
+        ]
+      },
+      {
+        "id": "nist-16",
+        "question": "What is the purpose of the MAP function in AI risk management?",
+        "recall_at_k": 0.0,
+        "mrr_at_k": 0.0,
+        "ndcg_at_k": 0.0,
+        "top1_accuracy": 0.0,
+        "latency_seconds": 0.13727710000239313,
+        "first_relevant_rank": null,
+        "ranked_results": [
+          {
+            "rank": 1,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 30,
+            "char_start": 2384,
+            "char_end": 2759,
+            "score": 0.032266458495966696,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 2,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 30,
+            "char_start": 0,
+            "char_end": 866,
+            "score": 0.03225806451612903,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 3,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 36,
+            "char_start": 1613,
+            "char_end": 2499,
+            "score": 0.03076923076923077,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 4,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 30,
+            "char_start": 1542,
+            "char_end": 2534,
+            "score": 0.03057889822595705,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 5,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 5,
+            "char_start": 1571,
+            "char_end": 1838,
+            "score": 0.030303030303030304,
+            "relevance_grade": 0
+          }
+        ]
+      },
+      {
+        "id": "nist-17",
+        "question": "What does the MEASURE function do with AI risk methods and metrics?",
+        "recall_at_k": 1.0,
+        "mrr_at_k": 0.25,
+        "ndcg_at_k": 0.4306765580733931,
+        "top1_accuracy": 0.0,
+        "latency_seconds": 0.12122329999692738,
+        "first_relevant_rank": 4,
+        "ranked_results": [
+          {
+            "rank": 1,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 35,
+            "char_start": 1510,
+            "char_end": 2254,
+            "score": 0.03200204813108039,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 2,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 10,
+            "char_start": 572,
+            "char_end": 1519,
+            "score": 0.0315136476426799,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 3,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 33,
+            "char_start": 2287,
+            "char_end": 2777,
+            "score": 0.031024531024531024,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 4,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 34,
+            "char_start": 0,
+            "char_end": 932,
+            "score": 0.031009615384615385,
+            "relevance_grade": 2
+          },
+          {
+            "rank": 5,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 33,
+            "char_start": 0,
+            "char_end": 842,
+            "score": 0.03028233151183971,
+            "relevance_grade": 0
+          }
+        ]
+      },
+      {
+        "id": "nist-18",
+        "question": "How does MANAGE address assessed risks and continue risk treatment after deployment?",
+        "recall_at_k": 0.5,
+        "mrr_at_k": 0.2,
+        "ndcg_at_k": 0.3196311965446524,
+        "top1_accuracy": 0.0,
+        "latency_seconds": 0.12561119999736547,
+        "first_relevant_rank": 5,
+        "ranked_results": [
+          {
+            "rank": 1,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 36,
+            "char_start": 1613,
+            "char_end": 2499,
+            "score": 0.032018442622950824,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 2,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 37,
+            "char_start": 0,
+            "char_end": 967,
+            "score": 0.030776515151515152,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 3,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 36,
+            "char_start": 793,
+            "char_end": 1763,
+            "score": 0.030536130536130537,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 4,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 13,
+            "char_start": 821,
+            "char_end": 1780,
+            "score": 0.029273504273504274,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 5,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 37,
+            "char_start": 817,
+            "char_end": 1781,
+            "score": 0.02792120864410021,
+            "relevance_grade": 2
+          }
+        ]
+      }
+    ],
+    "B": [
+      {
+        "id": "py-01",
+        "question": "What is the conventional first program for a new programmer, and what does the example print?",
+        "recall_at_k": 1.0,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 1.0,
+        "top1_accuracy": 1.0,
+        "latency_seconds": 13.087329800007865,
+        "first_relevant_rank": 1,
+        "ranked_results": [
+          {
+            "rank": 1,
+            "pdf": "4-IntroPython.pdf",
+            "page": 7,
+            "char_start": 0,
+            "char_end": 498,
+            "score": 2.397613286972046,
+            "relevance_grade": 2
+          },
+          {
+            "rank": 2,
+            "pdf": "4-IntroPython.pdf",
+            "page": 11,
+            "char_start": 0,
+            "char_end": 895,
+            "score": -3.3700993061065674,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 3,
+            "pdf": "4-IntroPython.pdf",
+            "page": 15,
+            "char_start": 0,
+            "char_end": 339,
+            "score": -3.4107675552368164,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 4,
+            "pdf": "4-IntroPython.pdf",
+            "page": 13,
+            "char_start": 0,
+            "char_end": 287,
+            "score": -3.454709768295288,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 5,
+            "pdf": "4-IntroPython.pdf",
+            "page": 17,
+            "char_start": 0,
+            "char_end": 349,
+            "score": -3.5851144790649414,
+            "relevance_grade": 0
+          }
+        ]
+      },
+      {
+        "id": "py-02",
+        "question": "How does the example program convert two typed values before adding them?",
+        "recall_at_k": 1.0,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 1.0,
+        "top1_accuracy": 1.0,
+        "latency_seconds": 15.769428600004176,
+        "first_relevant_rank": 1,
+        "ranked_results": [
+          {
+            "rank": 1,
+            "pdf": "4-IntroPython.pdf",
+            "page": 13,
+            "char_start": 0,
+            "char_end": 287,
+            "score": 0.5255590677261353,
+            "relevance_grade": 2
+          },
+          {
+            "rank": 2,
+            "pdf": "4-IntroPython.pdf",
+            "page": 14,
+            "char_start": 0,
+            "char_end": 319,
+            "score": 0.508051335811615,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 3,
+            "pdf": "4-IntroPython.pdf",
+            "page": 37,
+            "char_start": 0,
+            "char_end": 434,
+            "score": 0.4850134551525116,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 4,
+            "pdf": "4-IntroPython.pdf",
+            "page": 15,
+            "char_start": 0,
+            "char_end": 339,
+            "score": 0.4352790117263794,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 5,
+            "pdf": "4-IntroPython.pdf",
+            "page": 16,
+            "char_start": 0,
+            "char_end": 351,
+            "score": 0.3991802930831909,
+            "relevance_grade": 0
+          }
+        ]
+      },
+      {
+        "id": "py-03",
+        "question": "When should a Python print string use single quotes versus double quotes?",
+        "recall_at_k": 1.0,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 1.0,
+        "top1_accuracy": 1.0,
+        "latency_seconds": 15.034298700004001,
+        "first_relevant_rank": 1,
+        "ranked_results": [
+          {
+            "rank": 1,
+            "pdf": "4-IntroPython.pdf",
+            "page": 23,
+            "char_start": 0,
+            "char_end": 472,
+            "score": 5.045605182647705,
+            "relevance_grade": 2
+          },
+          {
+            "rank": 2,
+            "pdf": "4-IntroPython.pdf",
+            "page": 33,
+            "char_start": 0,
+            "char_end": 426,
+            "score": 1.8638944625854492,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 3,
+            "pdf": "4-IntroPython.pdf",
+            "page": 24,
+            "char_start": 0,
+            "char_end": 393,
+            "score": 0.4799853563308716,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 4,
+            "pdf": "4-IntroPython.pdf",
+            "page": 48,
+            "char_start": 0,
+            "char_end": 296,
+            "score": -6.763645648956299,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 5,
+            "pdf": "4-IntroPython.pdf",
+            "page": 46,
+            "char_start": 0,
+            "char_end": 477,
+            "score": -8.186826705932617,
+            "relevance_grade": 0
+          }
+        ]
+      },
+      {
+        "id": "py-04",
+        "question": "What does input() return, and how is the entered value initially treated?",
+        "recall_at_k": 1.0,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 1.0,
+        "top1_accuracy": 1.0,
+        "latency_seconds": 8.653076599992346,
+        "first_relevant_rank": 1,
+        "ranked_results": [
+          {
+            "rank": 1,
+            "pdf": "4-IntroPython.pdf",
+            "page": 24,
+            "char_start": 0,
+            "char_end": 393,
+            "score": -4.644973278045654,
+            "relevance_grade": 2
+          },
+          {
+            "rank": 2,
+            "pdf": "4-IntroPython.pdf",
+            "page": 35,
+            "char_start": 0,
+            "char_end": 291,
+            "score": -7.371149063110352,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 3,
+            "pdf": "4-IntroPython.pdf",
+            "page": 37,
+            "char_start": 0,
+            "char_end": 434,
+            "score": -7.407829284667969,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 4,
+            "pdf": "4-IntroPython.pdf",
+            "page": 41,
+            "char_start": 0,
+            "char_end": 374,
+            "score": -7.797178268432617,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 5,
+            "pdf": "4-IntroPython.pdf",
+            "page": 43,
+            "char_start": 0,
+            "char_end": 385,
+            "score": -7.8241095542907715,
+            "relevance_grade": 0
+          }
+        ]
+      },
+      {
+        "id": "py-05",
+        "question": "What does a variable represent in a Python program?",
+        "recall_at_k": 1.0,
+        "mrr_at_k": 0.3333333333333333,
+        "ndcg_at_k": 0.5,
+        "top1_accuracy": 0.0,
+        "latency_seconds": 12.920160900001065,
+        "first_relevant_rank": 3,
+        "ranked_results": [
+          {
+            "rank": 1,
+            "pdf": "4-IntroPython.pdf",
+            "page": 29,
+            "char_start": 0,
+            "char_end": 462,
+            "score": 2.3861305713653564,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 2,
+            "pdf": "4-IntroPython.pdf",
+            "page": 26,
+            "char_start": 0,
+            "char_end": 282,
+            "score": 1.865443468093872,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 3,
+            "pdf": "4-IntroPython.pdf",
+            "page": 25,
+            "char_start": 0,
+            "char_end": 228,
+            "score": 1.7834208011627197,
+            "relevance_grade": 2
+          },
+          {
+            "rank": 4,
+            "pdf": "4-IntroPython.pdf",
+            "page": 27,
+            "char_start": 0,
+            "char_end": 384,
+            "score": 1.6385889053344727,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 5,
+            "pdf": "4-IntroPython.pdf",
+            "page": 50,
+            "char_start": 0,
+            "char_end": 117,
+            "score": 1.229076623916626,
+            "relevance_grade": 0
+          }
+        ]
+      },
+      {
+        "id": "py-06",
+        "question": "How is assignment different from mathematical equality, and in what order is an assignment evaluated?",
+        "recall_at_k": 1.0,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 1.0,
+        "top1_accuracy": 1.0,
+        "latency_seconds": 11.25379659999453,
+        "first_relevant_rank": 1,
+        "ranked_results": [
+          {
+            "rank": 1,
+            "pdf": "4-IntroPython.pdf",
+            "page": 28,
+            "char_start": 0,
+            "char_end": 642,
+            "score": 1.6950230598449707,
+            "relevance_grade": 2
+          },
+          {
+            "rank": 2,
+            "pdf": "4-IntroPython.pdf",
+            "page": 27,
+            "char_start": 0,
+            "char_end": 384,
+            "score": -6.56252384185791,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 3,
+            "pdf": "4-IntroPython.pdf",
+            "page": 26,
+            "char_start": 0,
+            "char_end": 282,
+            "score": -7.639931678771973,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 4,
+            "pdf": "4-IntroPython.pdf",
+            "page": 25,
+            "char_start": 0,
+            "char_end": 228,
+            "score": -10.258694648742676,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 5,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 18,
+            "char_start": 0,
+            "char_end": 994,
+            "score": -10.339670181274414,
+            "relevance_grade": 0
+          }
+        ]
+      },
+      {
+        "id": "py-07",
+        "question": "What characters may appear in Python variable names, and are names case-sensitive?",
+        "recall_at_k": 1.0,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 1.0,
+        "top1_accuracy": 1.0,
+        "latency_seconds": 15.08096019999357,
+        "first_relevant_rank": 1,
+        "ranked_results": [
+          {
+            "rank": 1,
+            "pdf": "4-IntroPython.pdf",
+            "page": 29,
+            "char_start": 0,
+            "char_end": 462,
+            "score": 5.922435760498047,
+            "relevance_grade": 2
+          },
+          {
+            "rank": 2,
+            "pdf": "4-IntroPython.pdf",
+            "page": 50,
+            "char_start": 0,
+            "char_end": 117,
+            "score": -4.386192798614502,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 3,
+            "pdf": "4-IntroPython.pdf",
+            "page": 6,
+            "char_start": 0,
+            "char_end": 113,
+            "score": -4.7880778312683105,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 4,
+            "pdf": "4-IntroPython.pdf",
+            "page": 51,
+            "char_start": 0,
+            "char_end": 113,
+            "score": -4.7880778312683105,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 5,
+            "pdf": "4-IntroPython.pdf",
+            "page": 33,
+            "char_start": 0,
+            "char_end": 426,
+            "score": -5.803940296173096,
+            "relevance_grade": 0
+          }
+        ]
+      },
+      {
+        "id": "py-08",
+        "question": "How does assigning 700 versus 700.0 affect the type of a Python variable?",
+        "recall_at_k": 1.0,
+        "mrr_at_k": 0.5,
+        "ndcg_at_k": 0.6309297535714574,
+        "top1_accuracy": 0.0,
+        "latency_seconds": 15.919574800005648,
+        "first_relevant_rank": 2,
+        "ranked_results": [
+          {
+            "rank": 1,
+            "pdf": "4-IntroPython.pdf",
+            "page": 31,
+            "char_start": 0,
+            "char_end": 398,
+            "score": 2.6945438385009766,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 2,
+            "pdf": "4-IntroPython.pdf",
+            "page": 32,
+            "char_start": 0,
+            "char_end": 415,
+            "score": -0.391109824180603,
+            "relevance_grade": 2
+          },
+          {
+            "rank": 3,
+            "pdf": "4-IntroPython.pdf",
+            "page": 30,
+            "char_start": 0,
+            "char_end": 384,
+            "score": -6.442424297332764,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 4,
+            "pdf": "4-IntroPython.pdf",
+            "page": 28,
+            "char_start": 0,
+            "char_end": 642,
+            "score": -6.960000038146973,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 5,
+            "pdf": "4-IntroPython.pdf",
+            "page": 50,
+            "char_start": 0,
+            "char_end": 117,
+            "score": -7.18598747253418,
+            "relevance_grade": 0
+          }
+        ]
+      },
+      {
+        "id": "py-09",
+        "question": "Which basic Python types are illustrated, including the type used for True and False?",
+        "recall_at_k": 1.0,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 1.0,
+        "top1_accuracy": 1.0,
+        "latency_seconds": 20.13968229999591,
+        "first_relevant_rank": 1,
+        "ranked_results": [
+          {
+            "rank": 1,
+            "pdf": "4-IntroPython.pdf",
+            "page": 33,
+            "char_start": 0,
+            "char_end": 426,
+            "score": 3.508089065551758,
+            "relevance_grade": 2
+          },
+          {
+            "rank": 2,
+            "pdf": "4-IntroPython.pdf",
+            "page": 6,
+            "char_start": 0,
+            "char_end": 113,
+            "score": -6.202529430389404,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 3,
+            "pdf": "4-IntroPython.pdf",
+            "page": 51,
+            "char_start": 0,
+            "char_end": 113,
+            "score": -6.202529430389404,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 4,
+            "pdf": "4-IntroPython.pdf",
+            "page": 30,
+            "char_start": 0,
+            "char_end": 384,
+            "score": -6.6271562576293945,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 5,
+            "pdf": "4-IntroPython.pdf",
+            "page": 1,
+            "char_start": 0,
+            "char_end": 129,
+            "score": -6.683274269104004,
+            "relevance_grade": 0
+          }
+        ]
+      },
+      {
+        "id": "py-10",
+        "question": "When is float a more appropriate type than int, and when is int appropriate?",
+        "recall_at_k": 1.0,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 1.0,
+        "top1_accuracy": 1.0,
+        "latency_seconds": 16.0425477999961,
+        "first_relevant_rank": 1,
+        "ranked_results": [
+          {
+            "rank": 1,
+            "pdf": "4-IntroPython.pdf",
+            "page": 34,
+            "char_start": 0,
+            "char_end": 307,
+            "score": -4.266003131866455,
+            "relevance_grade": 2
+          },
+          {
+            "rank": 2,
+            "pdf": "4-IntroPython.pdf",
+            "page": 33,
+            "char_start": 0,
+            "char_end": 426,
+            "score": -5.576815605163574,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 3,
+            "pdf": "4-IntroPython.pdf",
+            "page": 32,
+            "char_start": 0,
+            "char_end": 415,
+            "score": -5.900563716888428,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 4,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 19,
+            "char_start": 732,
+            "char_end": 1436,
+            "score": -10.78361701965332,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 5,
+            "pdf": "4-IntroPython.pdf",
+            "page": 37,
+            "char_start": 0,
+            "char_end": 434,
+            "score": -10.966580390930176,
+            "relevance_grade": 0
+          }
+        ]
+      },
+      {
+        "id": "py-11",
+        "question": "How can a program convert a numeric string returned by input into an integer?",
+        "recall_at_k": 0.0,
+        "mrr_at_k": 0.0,
+        "ndcg_at_k": 0.0,
+        "top1_accuracy": 0.0,
+        "latency_seconds": 18.596186899987515,
+        "first_relevant_rank": null,
+        "ranked_results": [
+          {
+            "rank": 1,
+            "pdf": "4-IntroPython.pdf",
+            "page": 37,
+            "char_start": 0,
+            "char_end": 434,
+            "score": 2.2970309257507324,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 2,
+            "pdf": "4-IntroPython.pdf",
+            "page": 38,
+            "char_start": 0,
+            "char_end": 412,
+            "score": 1.5999343395233154,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 3,
+            "pdf": "4-IntroPython.pdf",
+            "page": 40,
+            "char_start": 0,
+            "char_end": 412,
+            "score": 1.5999343395233154,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 4,
+            "pdf": "4-IntroPython.pdf",
+            "page": 36,
+            "char_start": 0,
+            "char_end": 363,
+            "score": -0.20799244940280914,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 5,
+            "pdf": "4-IntroPython.pdf",
+            "page": 41,
+            "char_start": 0,
+            "char_end": 374,
+            "score": -0.7390309572219849,
+            "relevance_grade": 0
+          }
+        ]
+      },
+      {
+        "id": "py-12",
+        "question": "How can an integer be included in a string assembled with the + operator?",
+        "recall_at_k": 1.0,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 1.0,
+        "top1_accuracy": 1.0,
+        "latency_seconds": 15.179391600002418,
+        "first_relevant_rank": 1,
+        "ranked_results": [
+          {
+            "rank": 1,
+            "pdf": "4-IntroPython.pdf",
+            "page": 46,
+            "char_start": 0,
+            "char_end": 477,
+            "score": 1.6013904809951782,
+            "relevance_grade": 2
+          },
+          {
+            "rank": 2,
+            "pdf": "4-IntroPython.pdf",
+            "page": 38,
+            "char_start": 0,
+            "char_end": 412,
+            "score": -7.4857916831970215,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 3,
+            "pdf": "4-IntroPython.pdf",
+            "page": 40,
+            "char_start": 0,
+            "char_end": 412,
+            "score": -7.4857916831970215,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 4,
+            "pdf": "4-IntroPython.pdf",
+            "page": 33,
+            "char_start": 0,
+            "char_end": 426,
+            "score": -7.849829196929932,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 5,
+            "pdf": "4-IntroPython.pdf",
+            "page": 39,
+            "char_start": 0,
+            "char_end": 357,
+            "score": -7.896485328674316,
+            "relevance_grade": 0
+          }
+        ]
+      },
+      {
+        "id": "py-13",
+        "question": "What separator can print() use between several values, and what spacing does it add by default?",
+        "recall_at_k": 1.0,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 1.0,
+        "top1_accuracy": 1.0,
+        "latency_seconds": 19.215950900004827,
+        "first_relevant_rank": 1,
+        "ranked_results": [
+          {
+            "rank": 1,
+            "pdf": "4-IntroPython.pdf",
+            "page": 49,
+            "char_start": 0,
+            "char_end": 283,
+            "score": 3.196255683898926,
+            "relevance_grade": 2
+          },
+          {
+            "rank": 2,
+            "pdf": "4-IntroPython.pdf",
+            "page": 23,
+            "char_start": 0,
+            "char_end": 472,
+            "score": -3.946249485015869,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 3,
+            "pdf": "4-IntroPython.pdf",
+            "page": 48,
+            "char_start": 0,
+            "char_end": 296,
+            "score": -5.072551727294922,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 4,
+            "pdf": "4-IntroPython.pdf",
+            "page": 46,
+            "char_start": 0,
+            "char_end": 477,
+            "score": -7.154307842254639,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 5,
+            "pdf": "4-IntroPython.pdf",
+            "page": 14,
+            "char_start": 0,
+            "char_end": 319,
+            "score": -7.745114326477051,
+            "relevance_grade": 0
+          }
+        ]
+      },
+      {
+        "id": "rag-01",
+        "question": "What limitations of language models motivate retrieval-augmented generation?",
+        "recall_at_k": 0.0,
+        "mrr_at_k": 0.0,
+        "ndcg_at_k": 0.0,
+        "top1_accuracy": 0.0,
+        "latency_seconds": 24.91096039999684,
+        "first_relevant_rank": null,
+        "ranked_results": [
+          {
+            "rank": 1,
+            "pdf": "2312.10997v5.pdf",
+            "page": 1,
+            "char_start": 4068,
+            "char_end": 5001,
+            "score": 6.395186424255371,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 2,
+            "pdf": "2312.10997v5.pdf",
+            "page": 3,
+            "char_start": 663,
+            "char_end": 1610,
+            "score": 3.2956745624542236,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 3,
+            "pdf": "2312.10997v5.pdf",
+            "page": 1,
+            "char_start": 0,
+            "char_end": 999,
+            "score": 2.3421311378479004,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 4,
+            "pdf": "2312.10997v5.pdf",
+            "page": 17,
+            "char_start": 7695,
+            "char_end": 8534,
+            "score": 2.030088186264038,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 5,
+            "pdf": "2312.10997v5.pdf",
+            "page": 1,
+            "char_start": 850,
+            "char_end": 1809,
+            "score": 1.801396131515503,
+            "relevance_grade": 0
+          }
+        ]
+      },
+      {
+        "id": "rag-02",
+        "question": "What are the three main stages of a basic RAG question-answering pipeline?",
+        "recall_at_k": 1.0,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 1.0,
+        "top1_accuracy": 1.0,
+        "latency_seconds": 26.725724000003538,
+        "first_relevant_rank": 1,
+        "ranked_results": [
+          {
+            "rank": 1,
+            "pdf": "2312.10997v5.pdf",
+            "page": 3,
+            "char_start": 0,
+            "char_end": 813,
+            "score": 3.0614452362060547,
+            "relevance_grade": 2
+          },
+          {
+            "rank": 2,
+            "pdf": "2312.10997v5.pdf",
+            "page": 2,
+            "char_start": 1402,
+            "char_end": 2359,
+            "score": 2.8408002853393555,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 3,
+            "pdf": "2312.10997v5.pdf",
+            "page": 12,
+            "char_start": 3104,
+            "char_end": 3838,
+            "score": 1.3974989652633667,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 4,
+            "pdf": "2312.10997v5.pdf",
+            "page": 2,
+            "char_start": 0,
+            "char_end": 750,
+            "score": -0.6801238656044006,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 5,
+            "pdf": "2312.10997v5.pdf",
+            "page": 1,
+            "char_start": 3221,
+            "char_end": 4217,
+            "score": -0.7405668497085571,
+            "relevance_grade": 0
+          }
+        ]
+      },
+      {
+        "id": "rag-03",
+        "question": "How do Naive, Advanced, and Modular RAG differ in their organization and flexibility?",
+        "recall_at_k": 1.0,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 1.0,
+        "top1_accuracy": 1.0,
+        "latency_seconds": 21.261218900006497,
+        "first_relevant_rank": 1,
+        "ranked_results": [
+          {
+            "rank": 1,
+            "pdf": "2312.10997v5.pdf",
+            "page": 4,
+            "char_start": 0,
+            "char_end": 708,
+            "score": 4.8782572746276855,
+            "relevance_grade": 2
+          },
+          {
+            "rank": 2,
+            "pdf": "2312.10997v5.pdf",
+            "page": 5,
+            "char_start": 2069,
+            "char_end": 3009,
+            "score": 4.47231912612915,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 3,
+            "pdf": "2312.10997v5.pdf",
+            "page": 2,
+            "char_start": 2209,
+            "char_end": 3077,
+            "score": 3.481402635574341,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 4,
+            "pdf": "2312.10997v5.pdf",
+            "page": 4,
+            "char_start": 1152,
+            "char_end": 2060,
+            "score": 2.850449562072754,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 5,
+            "pdf": "2312.10997v5.pdf",
+            "page": 16,
+            "char_start": 1448,
+            "char_end": 2428,
+            "score": 2.783580780029297,
+            "relevance_grade": 0
+          }
+        ]
+      },
+      {
+        "id": "rag-04",
+        "question": "Which pre-retrieval techniques can improve an index or make a user query more suitable for retrieval?",
+        "recall_at_k": 1.0,
+        "mrr_at_k": 0.25,
+        "ndcg_at_k": 0.4306765580733931,
+        "top1_accuracy": 0.0,
+        "latency_seconds": 26.57463760000246,
+        "first_relevant_rank": 4,
+        "ranked_results": [
+          {
+            "rank": 1,
+            "pdf": "2312.10997v5.pdf",
+            "page": 4,
+            "char_start": 558,
+            "char_end": 1302,
+            "score": 6.595414161682129,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 2,
+            "pdf": "2312.10997v5.pdf",
+            "page": 9,
+            "char_start": 0,
+            "char_end": 981,
+            "score": 4.173611640930176,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 3,
+            "pdf": "2312.10997v5.pdf",
+            "page": 3,
+            "char_start": 3280,
+            "char_end": 3950,
+            "score": 2.9291348457336426,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 4,
+            "pdf": "2312.10997v5.pdf",
+            "page": 4,
+            "char_start": 1152,
+            "char_end": 2060,
+            "score": 1.6284513473510742,
+            "relevance_grade": 2
+          },
+          {
+            "rank": 5,
+            "pdf": "2312.10997v5.pdf",
+            "page": 3,
+            "char_start": 2013,
+            "char_end": 2839,
+            "score": 1.603834629058838,
+            "relevance_grade": 0
+          }
+        ]
+      },
+      {
+        "id": "rag-05",
+        "question": "What kinds of data sources can a RAG retriever use, and what is an example of unstructured text data?",
+        "recall_at_k": 1.0,
+        "mrr_at_k": 0.5,
+        "ndcg_at_k": 0.6309297535714574,
+        "top1_accuracy": 0.0,
+        "latency_seconds": 22.206849499998498,
+        "first_relevant_rank": 2,
+        "ranked_results": [
+          {
+            "rank": 1,
+            "pdf": "2312.10997v5.pdf",
+            "page": 7,
+            "char_start": 0,
+            "char_end": 886,
+            "score": 3.06943678855896,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 2,
+            "pdf": "2312.10997v5.pdf",
+            "page": 7,
+            "char_start": 736,
+            "char_end": 1439,
+            "score": 2.9465739727020264,
+            "relevance_grade": 2
+          },
+          {
+            "rank": 3,
+            "pdf": "2312.10997v5.pdf",
+            "page": 5,
+            "char_start": 5155,
+            "char_end": 6143,
+            "score": 2.261593818664551,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 4,
+            "pdf": "2312.10997v5.pdf",
+            "page": 7,
+            "char_start": 2109,
+            "char_end": 3028,
+            "score": 2.204899311065674,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 5,
+            "pdf": "2312.10997v5.pdf",
+            "page": 7,
+            "char_start": 2878,
+            "char_end": 3854,
+            "score": 2.1188955307006836,
+            "relevance_grade": 0
+          }
+        ]
+      },
+      {
+        "id": "rag-06",
+        "question": "Why can tables in PDFs be difficult for text-oriented RAG, and what handling approaches are discussed?",
+        "recall_at_k": 1.0,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 1.0,
+        "top1_accuracy": 1.0,
+        "latency_seconds": 24.254231099999743,
+        "first_relevant_rank": 1,
+        "ranked_results": [
+          {
+            "rank": 1,
+            "pdf": "2312.10997v5.pdf",
+            "page": 7,
+            "char_start": 2109,
+            "char_end": 3028,
+            "score": 4.632169246673584,
+            "relevance_grade": 2
+          },
+          {
+            "rank": 2,
+            "pdf": "2312.10997v5.pdf",
+            "page": 7,
+            "char_start": 2878,
+            "char_end": 3854,
+            "score": 0.6933109760284424,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 3,
+            "pdf": "2312.10997v5.pdf",
+            "page": 3,
+            "char_start": 663,
+            "char_end": 1610,
+            "score": -1.5475537776947021,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 4,
+            "pdf": "2312.10997v5.pdf",
+            "page": 14,
+            "char_start": 3330,
+            "char_end": 4307,
+            "score": -1.6221848726272583,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 5,
+            "pdf": "2312.10997v5.pdf",
+            "page": 14,
+            "char_start": 2491,
+            "char_end": 3480,
+            "score": -1.6340537071228027,
+            "relevance_grade": 0
+          }
+        ]
+      },
+      {
+        "id": "rag-07",
+        "question": "What does proposition-level retrieval mean, and why might it improve retrieval precision?",
+        "recall_at_k": 1.0,
+        "mrr_at_k": 0.5,
+        "ndcg_at_k": 0.6309297535714574,
+        "top1_accuracy": 0.0,
+        "latency_seconds": 24.89461879999726,
+        "first_relevant_rank": 2,
+        "ranked_results": [
+          {
+            "rank": 1,
+            "pdf": "2312.10997v5.pdf",
+            "page": 8,
+            "char_start": 0,
+            "char_end": 986,
+            "score": 3.2304039001464844,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 2,
+            "pdf": "2312.10997v5.pdf",
+            "page": 8,
+            "char_start": 836,
+            "char_end": 1782,
+            "score": 1.580599069595337,
+            "relevance_grade": 2
+          },
+          {
+            "rank": 3,
+            "pdf": "2312.10997v5.pdf",
+            "page": 11,
+            "char_start": 2071,
+            "char_end": 3008,
+            "score": 0.925228476524353,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 4,
+            "pdf": "2312.10997v5.pdf",
+            "page": 10,
+            "char_start": 5404,
+            "char_end": 5968,
+            "score": 0.7041021585464478,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 5,
+            "pdf": "2312.10997v5.pdf",
+            "page": 5,
+            "char_start": 2859,
+            "char_end": 3784,
+            "score": -0.5010591149330139,
+            "relevance_grade": 0
+          }
+        ]
+      },
+      {
+        "id": "rag-08",
+        "question": "How does fixed-size chunking work, and what retrieval trade-off does chunk size create?",
+        "recall_at_k": 1.0,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 1.0,
+        "top1_accuracy": 1.0,
+        "latency_seconds": 21.435524300002726,
+        "first_relevant_rank": 1,
+        "ranked_results": [
+          {
+            "rank": 1,
+            "pdf": "2312.10997v5.pdf",
+            "page": 8,
+            "char_start": 2397,
+            "char_end": 3395,
+            "score": 1.8666865825653076,
+            "relevance_grade": 2
+          },
+          {
+            "rank": 2,
+            "pdf": "2312.10997v5.pdf",
+            "page": 18,
+            "char_start": 8453,
+            "char_end": 9004,
+            "score": -2.01399302482605,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 3,
+            "pdf": "2312.10997v5.pdf",
+            "page": 18,
+            "char_start": 7613,
+            "char_end": 8602,
+            "score": -2.945340156555176,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 4,
+            "pdf": "2312.10997v5.pdf",
+            "page": 14,
+            "char_start": 826,
+            "char_end": 1800,
+            "score": -4.080591201782227,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 5,
+            "pdf": "2312.10997v5.pdf",
+            "page": 3,
+            "char_start": 2013,
+            "char_end": 2839,
+            "score": -6.738831520080566,
+            "relevance_grade": 0
+          }
+        ]
+      },
+      {
+        "id": "rag-09",
+        "question": "What document or chunk metadata can be attached to retrieved passages, and what can that help with?",
+        "recall_at_k": 1.0,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 1.0,
+        "top1_accuracy": 1.0,
+        "latency_seconds": 20.327196099999128,
+        "first_relevant_rank": 1,
+        "ranked_results": [
+          {
+            "rank": 1,
+            "pdf": "2312.10997v5.pdf",
+            "page": 8,
+            "char_start": 3951,
+            "char_end": 4934,
+            "score": 3.653388500213623,
+            "relevance_grade": 2
+          },
+          {
+            "rank": 2,
+            "pdf": "2312.10997v5.pdf",
+            "page": 8,
+            "char_start": 2397,
+            "char_end": 3395,
+            "score": 0.280053049325943,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 3,
+            "pdf": "2312.10997v5.pdf",
+            "page": 8,
+            "char_start": 0,
+            "char_end": 986,
+            "score": -0.892885684967041,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 4,
+            "pdf": "2312.10997v5.pdf",
+            "page": 3,
+            "char_start": 0,
+            "char_end": 813,
+            "score": -2.7152926921844482,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 5,
+            "pdf": "2312.10997v5.pdf",
+            "page": 9,
+            "char_start": 5613,
+            "char_end": 6335,
+            "score": -3.0224838256835938,
+            "relevance_grade": 0
+          }
+        ]
+      },
+      {
+        "id": "rag-10",
+        "question": "How can query expansion help retrieve information for a complex question?",
+        "recall_at_k": 1.0,
+        "mrr_at_k": 0.5,
+        "ndcg_at_k": 0.6309297535714574,
+        "top1_accuracy": 0.0,
+        "latency_seconds": 23.33747939999739,
+        "first_relevant_rank": 2,
+        "ranked_results": [
+          {
+            "rank": 1,
+            "pdf": "2312.10997v5.pdf",
+            "page": 8,
+            "char_start": 5591,
+            "char_end": 6275,
+            "score": 5.940929889678955,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 2,
+            "pdf": "2312.10997v5.pdf",
+            "page": 8,
+            "char_start": 4785,
+            "char_end": 5740,
+            "score": 4.792851448059082,
+            "relevance_grade": 2
+          },
+          {
+            "rank": 3,
+            "pdf": "2312.10997v5.pdf",
+            "page": 3,
+            "char_start": 2013,
+            "char_end": 2839,
+            "score": 3.7414393424987793,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 4,
+            "pdf": "2312.10997v5.pdf",
+            "page": 8,
+            "char_start": 3951,
+            "char_end": 4934,
+            "score": 1.1750940084457397,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 5,
+            "pdf": "2312.10997v5.pdf",
+            "page": 3,
+            "char_start": 1460,
+            "char_end": 2163,
+            "score": -0.7952717542648315,
+            "relevance_grade": 0
+          }
+        ]
+      },
+      {
+        "id": "rag-11",
+        "question": "How does HyDE change the representation used to retrieve documents?",
+        "recall_at_k": 0.0,
+        "mrr_at_k": 0.0,
+        "ndcg_at_k": 0.0,
+        "top1_accuracy": 0.0,
+        "latency_seconds": 24.97305490000872,
+        "first_relevant_rank": null,
+        "ranked_results": [
+          {
+            "rank": 1,
+            "pdf": "2312.10997v5.pdf",
+            "page": 9,
+            "char_start": 831,
+            "char_end": 1800,
+            "score": 0.15422004461288452,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 2,
+            "pdf": "2312.10997v5.pdf",
+            "page": 8,
+            "char_start": 4785,
+            "char_end": 5740,
+            "score": -0.808702826499939,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 3,
+            "pdf": "2312.10997v5.pdf",
+            "page": 5,
+            "char_start": 2859,
+            "char_end": 3784,
+            "score": -1.8109759092330933,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 4,
+            "pdf": "2312.10997v5.pdf",
+            "page": 10,
+            "char_start": 0,
+            "char_end": 987,
+            "score": -4.187315940856934,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 5,
+            "pdf": "2312.10997v5.pdf",
+            "page": 10,
+            "char_start": 3818,
+            "char_end": 4811,
+            "score": -4.690959930419922,
+            "relevance_grade": 0
+          }
+        ]
+      },
+      {
+        "id": "rag-12",
+        "question": "What is query routing in a RAG system, and what can determine the route?",
+        "recall_at_k": 1.0,
+        "mrr_at_k": 0.5,
+        "ndcg_at_k": 0.6309297535714574,
+        "top1_accuracy": 0.0,
+        "latency_seconds": 29.42946430000302,
+        "first_relevant_rank": 2,
+        "ranked_results": [
+          {
+            "rank": 1,
+            "pdf": "2312.10997v5.pdf",
+            "page": 5,
+            "char_start": 0,
+            "char_end": 913,
+            "score": 4.878234386444092,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 2,
+            "pdf": "2312.10997v5.pdf",
+            "page": 9,
+            "char_start": 3265,
+            "char_end": 4080,
+            "score": 4.410473823547363,
+            "relevance_grade": 2
+          },
+          {
+            "rank": 3,
+            "pdf": "2312.10997v5.pdf",
+            "page": 9,
+            "char_start": 3930,
+            "char_end": 4921,
+            "score": 2.444286823272705,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 4,
+            "pdf": "2312.10997v5.pdf",
+            "page": 3,
+            "char_start": 2013,
+            "char_end": 2839,
+            "score": 0.3427051305770874,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 5,
+            "pdf": "2312.10997v5.pdf",
+            "page": 9,
+            "char_start": 1650,
+            "char_end": 2596,
+            "score": -1.0020458698272705,
+            "relevance_grade": 0
+          }
+        ]
+      },
+      {
+        "id": "rag-13",
+        "question": "How does hybrid retrieval combine signals, and how are dense retrieval results commonly compared?",
+        "recall_at_k": 1.0,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 1.0,
+        "top1_accuracy": 1.0,
+        "latency_seconds": 32.01758790000167,
+        "first_relevant_rank": 1,
+        "ranked_results": [
+          {
+            "rank": 1,
+            "pdf": "2312.10997v5.pdf",
+            "page": 9,
+            "char_start": 3930,
+            "char_end": 4921,
+            "score": -0.10017484426498413,
+            "relevance_grade": 2
+          },
+          {
+            "rank": 2,
+            "pdf": "2312.10997v5.pdf",
+            "page": 9,
+            "char_start": 5613,
+            "char_end": 6335,
+            "score": -0.7331070899963379,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 3,
+            "pdf": "2312.10997v5.pdf",
+            "page": 5,
+            "char_start": 2859,
+            "char_end": 3784,
+            "score": -1.4808275699615479,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 4,
+            "pdf": "2312.10997v5.pdf",
+            "page": 9,
+            "char_start": 0,
+            "char_end": 981,
+            "score": -1.4899368286132812,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 5,
+            "pdf": "2312.10997v5.pdf",
+            "page": 9,
+            "char_start": 2446,
+            "char_end": 3414,
+            "score": -5.144536972045898,
+            "relevance_grade": 0
+          }
+        ]
+      },
+      {
+        "id": "rag-14",
+        "question": "What is the purpose of reranking retrieved chunks before generation?",
+        "recall_at_k": 1.0,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 1.0,
+        "top1_accuracy": 1.0,
+        "latency_seconds": 20.831461499998113,
+        "first_relevant_rank": 1,
+        "ranked_results": [
+          {
+            "rank": 1,
+            "pdf": "2312.10997v5.pdf",
+            "page": 10,
+            "char_start": 2265,
+            "char_end": 3183,
+            "score": 3.386843204498291,
+            "relevance_grade": 2
+          },
+          {
+            "rank": 2,
+            "pdf": "2312.10997v5.pdf",
+            "page": 4,
+            "char_start": 1910,
+            "char_end": 2799,
+            "score": 2.0235891342163086,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 3,
+            "pdf": "2312.10997v5.pdf",
+            "page": 3,
+            "char_start": 0,
+            "char_end": 813,
+            "score": -0.4349079132080078,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 4,
+            "pdf": "2312.10997v5.pdf",
+            "page": 3,
+            "char_start": 2013,
+            "char_end": 2839,
+            "score": -0.6213477849960327,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 5,
+            "pdf": "2312.10997v5.pdf",
+            "page": 3,
+            "char_start": 663,
+            "char_end": 1610,
+            "score": -0.7091104388237,
+            "relevance_grade": 0
+          }
+        ]
+      },
+      {
+        "id": "rag-15",
+        "question": "Why might a RAG system select or compress context instead of passing every retrieved passage to the generator?",
+        "recall_at_k": 1.0,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 1.0,
+        "top1_accuracy": 1.0,
+        "latency_seconds": 12.655920999997761,
+        "first_relevant_rank": 1,
+        "ranked_results": [
+          {
+            "rank": 1,
+            "pdf": "2312.10997v5.pdf",
+            "page": 10,
+            "char_start": 3818,
+            "char_end": 4811,
+            "score": 4.267942428588867,
+            "relevance_grade": 2
+          },
+          {
+            "rank": 2,
+            "pdf": "2312.10997v5.pdf",
+            "page": 3,
+            "char_start": 2013,
+            "char_end": 2839,
+            "score": 2.638882875442505,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 3,
+            "pdf": "2312.10997v5.pdf",
+            "page": 4,
+            "char_start": 1910,
+            "char_end": 2799,
+            "score": 1.410639762878418,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 4,
+            "pdf": "2312.10997v5.pdf",
+            "page": 5,
+            "char_start": 5155,
+            "char_end": 6143,
+            "score": 1.3517177104949951,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 5,
+            "pdf": "2312.10997v5.pdf",
+            "page": 5,
+            "char_start": 0,
+            "char_end": 913,
+            "score": 1.2911580801010132,
+            "relevance_grade": 0
+          }
+        ]
+      },
+      {
+        "id": "rag-16",
+        "question": "How do iterative, recursive, and adaptive retrieval differ?",
+        "recall_at_k": 1.0,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 1.0,
+        "top1_accuracy": 1.0,
+        "latency_seconds": 21.074218299996573,
+        "first_relevant_rank": 1,
+        "ranked_results": [
+          {
+            "rank": 1,
+            "pdf": "2312.10997v5.pdf",
+            "page": 11,
+            "char_start": 0,
+            "char_end": 728,
+            "score": 6.458061218261719,
+            "relevance_grade": 2
+          },
+          {
+            "rank": 2,
+            "pdf": "2312.10997v5.pdf",
+            "page": 11,
+            "char_start": 2071,
+            "char_end": 3008,
+            "score": 4.200418472290039,
+            "relevance_grade": 1
+          },
+          {
+            "rank": 3,
+            "pdf": "2312.10997v5.pdf",
+            "page": 11,
+            "char_start": 1353,
+            "char_end": 2221,
+            "score": 3.7655601501464844,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 4,
+            "pdf": "2312.10997v5.pdf",
+            "page": 10,
+            "char_start": 5404,
+            "char_end": 5968,
+            "score": 2.659414291381836,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 5,
+            "pdf": "2312.10997v5.pdf",
+            "page": 4,
+            "char_start": 558,
+            "char_end": 1302,
+            "score": 2.2183279991149902,
+            "relevance_grade": 0
+          }
+        ]
+      },
+      {
+        "id": "rag-17",
+        "question": "Which measures or quality dimensions are used to evaluate RAG retrieval and generated answers?",
+        "recall_at_k": 0.5,
+        "mrr_at_k": 0.3333333333333333,
+        "ndcg_at_k": 0.41311732856427996,
+        "top1_accuracy": 0.0,
+        "latency_seconds": 13.294955699995626,
+        "first_relevant_rank": 3,
+        "ranked_results": [
+          {
+            "rank": 1,
+            "pdf": "2312.10997v5.pdf",
+            "page": 12,
+            "char_start": 839,
+            "char_end": 1790,
+            "score": 5.9432830810546875,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 2,
+            "pdf": "2312.10997v5.pdf",
+            "page": 12,
+            "char_start": 1640,
+            "char_end": 2639,
+            "score": 4.954747200012207,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 3,
+            "pdf": "2312.10997v5.pdf",
+            "page": 12,
+            "char_start": 2490,
+            "char_end": 3254,
+            "score": 4.950443267822266,
+            "relevance_grade": 2
+          },
+          {
+            "rank": 4,
+            "pdf": "2312.10997v5.pdf",
+            "page": 12,
+            "char_start": 4505,
+            "char_end": 5442,
+            "score": 3.6575942039489746,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 5,
+            "pdf": "2312.10997v5.pdf",
+            "page": 14,
+            "char_start": 826,
+            "char_end": 1800,
+            "score": 3.635788917541504,
+            "relevance_grade": 0
+          }
+        ]
+      },
+      {
+        "id": "rag-18",
+        "question": "Which evaluation frameworks are compared for retrieval and generation quality?",
+        "recall_at_k": 1.0,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 1.0,
+        "top1_accuracy": 1.0,
+        "latency_seconds": 16.84870050000609,
+        "first_relevant_rank": 1,
+        "ranked_results": [
+          {
+            "rank": 1,
+            "pdf": "2312.10997v5.pdf",
+            "page": 15,
+            "char_start": 0,
+            "char_end": 984,
+            "score": 5.87332010269165,
+            "relevance_grade": 2
+          },
+          {
+            "rank": 2,
+            "pdf": "2312.10997v5.pdf",
+            "page": 12,
+            "char_start": 839,
+            "char_end": 1790,
+            "score": 4.991550922393799,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 3,
+            "pdf": "2312.10997v5.pdf",
+            "page": 12,
+            "char_start": 1640,
+            "char_end": 2639,
+            "score": 4.779426097869873,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 4,
+            "pdf": "2312.10997v5.pdf",
+            "page": 12,
+            "char_start": 5292,
+            "char_end": 6066,
+            "score": 3.4673147201538086,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 5,
+            "pdf": "2312.10997v5.pdf",
+            "page": 20,
+            "char_start": 2887,
+            "char_end": 3754,
+            "score": 3.033656120300293,
+            "relevance_grade": 0
+          }
+        ]
+      },
+      {
+        "id": "rag-19",
+        "question": "How is RAG being extended beyond text question answering to other data modalities?",
+        "recall_at_k": 0.0,
+        "mrr_at_k": 0.0,
+        "ndcg_at_k": 0.0,
+        "top1_accuracy": 0.0,
+        "latency_seconds": 32.76847080000152,
+        "first_relevant_rank": null,
+        "ranked_results": [
+          {
+            "rank": 1,
+            "pdf": "2312.10997v5.pdf",
+            "page": 12,
+            "char_start": 3104,
+            "char_end": 3838,
+            "score": 2.2636170387268066,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 2,
+            "pdf": "2312.10997v5.pdf",
+            "page": 16,
+            "char_start": 2278,
+            "char_end": 3153,
+            "score": 2.174534320831299,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 3,
+            "pdf": "2312.10997v5.pdf",
+            "page": 16,
+            "char_start": 680,
+            "char_end": 1598,
+            "score": 1.2196640968322754,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 4,
+            "pdf": "2312.10997v5.pdf",
+            "page": 7,
+            "char_start": 0,
+            "char_end": 886,
+            "score": 0.9011076092720032,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 5,
+            "pdf": "2312.10997v5.pdf",
+            "page": 3,
+            "char_start": 0,
+            "char_end": 813,
+            "score": 0.4089035093784332,
+            "relevance_grade": 0
+          }
+        ]
+      },
+      {
+        "id": "nist-01",
+        "question": "How does the AI RMF define risk in relation to likelihood and the consequences of an event?",
+        "recall_at_k": 0.0,
+        "mrr_at_k": 0.0,
+        "ndcg_at_k": 0.0,
+        "top1_accuracy": 0.0,
+        "latency_seconds": 43.271591400000034,
+        "first_relevant_rank": null,
+        "ranked_results": [
+          {
+            "rank": 1,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 9,
+            "char_start": 0,
+            "char_end": 824,
+            "score": 6.564064025878906,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 2,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 13,
+            "char_start": 0,
+            "char_end": 970,
+            "score": 3.893385887145996,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 3,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 6,
+            "char_start": 595,
+            "char_end": 1560,
+            "score": 3.18526291847229,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 4,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 44,
+            "char_start": 1387,
+            "char_end": 2361,
+            "score": 3.131258487701416,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 5,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 13,
+            "char_start": 2332,
+            "char_end": 3132,
+            "score": 3.1143112182617188,
+            "relevance_grade": 0
+          }
+        ]
+      },
+      {
+        "id": "nist-02",
+        "question": "Does an inability to measure an AI risk mean the system is necessarily high-risk or low-risk?",
+        "recall_at_k": 1.0,
+        "mrr_at_k": 0.5,
+        "ndcg_at_k": 0.6309297535714574,
+        "top1_accuracy": 0.0,
+        "latency_seconds": 16.191482900001574,
+        "first_relevant_rank": 2,
+        "ranked_results": [
+          {
+            "rank": 1,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 10,
+            "char_start": 0,
+            "char_end": 722,
+            "score": 7.413130760192871,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 2,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 10,
+            "char_start": 572,
+            "char_end": 1519,
+            "score": 7.394434928894043,
+            "relevance_grade": 2
+          },
+          {
+            "rank": 3,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 13,
+            "char_start": 0,
+            "char_end": 970,
+            "score": 3.613454580307007,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 4,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 44,
+            "char_start": 0,
+            "char_end": 754,
+            "score": 3.0208542346954346,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 5,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 11,
+            "char_start": 1996,
+            "char_end": 2768,
+            "score": 2.6490254402160645,
+            "relevance_grade": 0
+          }
+        ]
+      },
+      {
+        "id": "nist-03",
+        "question": "What can go wrong when AI risk metrics ignore context or differences between affected groups?",
+        "recall_at_k": 1.0,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 1.0,
+        "top1_accuracy": 1.0,
+        "latency_seconds": 11.62728960000095,
+        "first_relevant_rank": 1,
+        "ranked_results": [
+          {
+            "rank": 1,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 11,
+            "char_start": 637,
+            "char_end": 1590,
+            "score": 4.439682483673096,
+            "relevance_grade": 2
+          },
+          {
+            "rank": 2,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 11,
+            "char_start": 0,
+            "char_end": 787,
+            "score": 3.745582103729248,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 3,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 42,
+            "char_start": 778,
+            "char_end": 1738,
+            "score": 0.4899477958679199,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 4,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 13,
+            "char_start": 821,
+            "char_end": 1780,
+            "score": -0.11323964595794678,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 5,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 13,
+            "char_start": 0,
+            "char_end": 970,
+            "score": -0.12161954492330551,
+            "relevance_grade": 0
+          }
+        ]
+      },
+      {
+        "id": "nist-04",
+        "question": "What does risk tolerance mean, and why does it vary across organizations or use cases?",
+        "recall_at_k": 1.0,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 1.0,
+        "top1_accuracy": 1.0,
+        "latency_seconds": 16.883910599994124,
+        "first_relevant_rank": 1,
+        "ranked_results": [
+          {
+            "rank": 1,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 12,
+            "char_start": 0,
+            "char_end": 888,
+            "score": 6.07413387298584,
+            "relevance_grade": 2
+          },
+          {
+            "rank": 2,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 12,
+            "char_start": 1530,
+            "char_end": 2460,
+            "score": 3.733652114868164,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 3,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 12,
+            "char_start": 738,
+            "char_end": 1680,
+            "score": 3.6443769931793213,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 4,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 13,
+            "char_start": 0,
+            "char_end": 970,
+            "score": -0.13591286540031433,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 5,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 47,
+            "char_start": 838,
+            "char_end": 1791,
+            "score": -1.1140470504760742,
+            "relevance_grade": 0
+          }
+        ]
+      },
+      {
+        "id": "nist-05",
+        "question": "How should organizations respond to their highest-priority AI risks, including unacceptable residual risk?",
+        "recall_at_k": 1.0,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 1.0,
+        "top1_accuracy": 1.0,
+        "latency_seconds": 11.256736800001818,
+        "first_relevant_rank": 1,
+        "ranked_results": [
+          {
+            "rank": 1,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 13,
+            "char_start": 0,
+            "char_end": 970,
+            "score": 5.516236782073975,
+            "relevance_grade": 2
+          },
+          {
+            "rank": 2,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 13,
+            "char_start": 1630,
+            "char_end": 2482,
+            "score": 3.4374260902404785,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 3,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 12,
+            "char_start": 738,
+            "char_end": 1680,
+            "score": 1.6668424606323242,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 4,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 10,
+            "char_start": 572,
+            "char_end": 1519,
+            "score": 1.1707260608673096,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 5,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 13,
+            "char_start": 821,
+            "char_end": 1780,
+            "score": 1.0540738105773926,
+            "relevance_grade": 0
+          }
+        ]
+      },
+      {
+        "id": "nist-06",
+        "question": "Why does AI risk management call for diverse perspectives and actors across the lifecycle?",
+        "recall_at_k": 1.0,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 1.0,
+        "top1_accuracy": 1.0,
+        "latency_seconds": 14.501546699990286,
+        "first_relevant_rank": 1,
+        "ranked_results": [
+          {
+            "rank": 1,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 14,
+            "char_start": 709,
+            "char_end": 1671,
+            "score": 6.621055603027344,
+            "relevance_grade": 2
+          },
+          {
+            "rank": 2,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 25,
+            "char_start": 683,
+            "char_end": 1286,
+            "score": 5.669591426849365,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 3,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 11,
+            "char_start": 637,
+            "char_end": 1590,
+            "score": 4.783271312713623,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 4,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 18,
+            "char_start": 844,
+            "char_end": 1730,
+            "score": 4.7568159103393555,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 5,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 14,
+            "char_start": 0,
+            "char_end": 858,
+            "score": 4.496768951416016,
+            "relevance_grade": 0
+          }
+        ]
+      },
+      {
+        "id": "nist-07",
+        "question": "Which characteristics does NIST identify as important for trustworthy AI systems?",
+        "recall_at_k": 1.0,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 1.0,
+        "top1_accuracy": 1.0,
+        "latency_seconds": 12.656792199995834,
+        "first_relevant_rank": 1,
+        "ranked_results": [
+          {
+            "rank": 1,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 17,
+            "char_start": 0,
+            "char_end": 955,
+            "score": 8.512916564941406,
+            "relevance_grade": 2
+          },
+          {
+            "rank": 2,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 44,
+            "char_start": 0,
+            "char_end": 754,
+            "score": 5.830327033996582,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 3,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 17,
+            "char_start": 805,
+            "char_end": 1786,
+            "score": 5.185842514038086,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 4,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 7,
+            "char_start": 2231,
+            "char_end": 3096,
+            "score": 5.024502754211426,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 5,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 10,
+            "char_start": 0,
+            "char_end": 722,
+            "score": 4.336940765380859,
+            "relevance_grade": 0
+          }
+        ]
+      },
+      {
+        "id": "nist-08",
+        "question": "What makes an accuracy test set appropriate for evaluating an AI system?",
+        "recall_at_k": 1.0,
+        "mrr_at_k": 0.3333333333333333,
+        "ndcg_at_k": 0.5,
+        "top1_accuracy": 0.0,
+        "latency_seconds": 12.930206000004546,
+        "first_relevant_rank": 3,
+        "ranked_results": [
+          {
+            "rank": 1,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 19,
+            "char_start": 0,
+            "char_end": 882,
+            "score": 5.740416049957275,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 2,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 19,
+            "char_start": 1286,
+            "char_end": 2200,
+            "score": 4.847811698913574,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 3,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 19,
+            "char_start": 732,
+            "char_end": 1436,
+            "score": 3.3243870735168457,
+            "relevance_grade": 2
+          },
+          {
+            "rank": 4,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 18,
+            "char_start": 1580,
+            "char_end": 2570,
+            "score": 1.783674955368042,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 5,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 33,
+            "char_start": 692,
+            "char_end": 1647,
+            "score": 1.724531888961792,
+            "relevance_grade": 0
+          }
+        ]
+      },
+      {
+        "id": "nist-09",
+        "question": "What practices support AI safety, and how are security and resilience characterized?",
+        "recall_at_k": 1.0,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 0.8503449055347546,
+        "top1_accuracy": 1.0,
+        "latency_seconds": 12.063246799996705,
+        "first_relevant_rank": 1,
+        "ranked_results": [
+          {
+            "rank": 1,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 20,
+            "char_start": 1279,
+            "char_end": 2053,
+            "score": 3.12626314163208,
+            "relevance_grade": 2
+          },
+          {
+            "rank": 2,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 20,
+            "char_start": 562,
+            "char_end": 1429,
+            "score": 2.2549004554748535,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 3,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 19,
+            "char_start": 2050,
+            "char_end": 2782,
+            "score": 1.1450252532958984,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 4,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 22,
+            "char_start": 602,
+            "char_end": 1542,
+            "score": 0.8893429636955261,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 5,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 20,
+            "char_start": 0,
+            "char_end": 712,
+            "score": 0.678293764591217,
+            "relevance_grade": 2
+          }
+        ]
+      },
+      {
+        "id": "nist-10",
+        "question": "How are accountability and transparency related, and what does transparency reveal?",
+        "recall_at_k": 1.0,
+        "mrr_at_k": 0.2,
+        "ndcg_at_k": 0.38685280723454163,
+        "top1_accuracy": 0.0,
+        "latency_seconds": 18.99520869999833,
+        "first_relevant_rank": 5,
+        "ranked_results": [
+          {
+            "rank": 1,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 20,
+            "char_start": 1903,
+            "char_end": 2675,
+            "score": 5.618707180023193,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 2,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 21,
+            "char_start": 1389,
+            "char_end": 2362,
+            "score": 3.275986909866333,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 3,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 21,
+            "char_start": 786,
+            "char_end": 1539,
+            "score": 2.982712984085083,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 4,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 20,
+            "char_start": 2526,
+            "char_end": 3124,
+            "score": 1.3022611141204834,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 5,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 21,
+            "char_start": 0,
+            "char_end": 936,
+            "score": 0.7855448722839355,
+            "relevance_grade": 2
+          }
+        ]
+      },
+      {
+        "id": "nist-11",
+        "question": "How does the framework distinguish transparency, explainability, and interpretability?",
+        "recall_at_k": 1.0,
+        "mrr_at_k": 0.5,
+        "ndcg_at_k": 0.6590018048024133,
+        "top1_accuracy": 0.0,
+        "latency_seconds": 17.177244599995902,
+        "first_relevant_rank": 2,
+        "ranked_results": [
+          {
+            "rank": 1,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 21,
+            "char_start": 1389,
+            "char_end": 2362,
+            "score": 6.3080010414123535,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 2,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 22,
+            "char_start": 0,
+            "char_end": 752,
+            "score": 5.96080207824707,
+            "relevance_grade": 2
+          },
+          {
+            "rank": 3,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 22,
+            "char_start": 602,
+            "char_end": 1542,
+            "score": 0.7541553974151611,
+            "relevance_grade": 1
+          },
+          {
+            "rank": 4,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 21,
+            "char_start": 2212,
+            "char_end": 2927,
+            "score": 0.3944891393184662,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 5,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 17,
+            "char_start": 0,
+            "char_end": 955,
+            "score": -0.3394884467124939,
+            "relevance_grade": 0
+          }
+        ]
+      },
+      {
+        "id": "nist-12",
+        "question": "What does privacy mean in the AI RMF, beyond merely keeping data secret?",
+        "recall_at_k": 0.0,
+        "mrr_at_k": 0.0,
+        "ndcg_at_k": 0.0,
+        "top1_accuracy": 0.0,
+        "latency_seconds": 11.764878300004057,
+        "first_relevant_rank": null,
+        "ranked_results": [
+          {
+            "rank": 1,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 13,
+            "char_start": 2332,
+            "char_end": 3132,
+            "score": 2.1185078620910645,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 2,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 44,
+            "char_start": 0,
+            "char_end": 754,
+            "score": 2.0183324813842773,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 3,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 44,
+            "char_start": 604,
+            "char_end": 1536,
+            "score": 1.7296282052993774,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 4,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 44,
+            "char_start": 1387,
+            "char_end": 2361,
+            "score": 1.289978265762329,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 5,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 21,
+            "char_start": 0,
+            "char_end": 936,
+            "score": 0.7074791789054871,
+            "relevance_grade": 0
+          }
+        ]
+      },
+      {
+        "id": "nist-13",
+        "question": "Which three categories of AI bias does NIST say should be considered?",
+        "recall_at_k": 1.0,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 1.0,
+        "top1_accuracy": 1.0,
+        "latency_seconds": 11.425147000001743,
+        "first_relevant_rank": 1,
+        "ranked_results": [
+          {
+            "rank": 1,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 23,
+            "char_start": 0,
+            "char_end": 914,
+            "score": 9.568313598632812,
+            "relevance_grade": 2
+          },
+          {
+            "rank": 2,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 23,
+            "char_start": 764,
+            "char_end": 1671,
+            "score": 3.6667959690093994,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 3,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 34,
+            "char_start": 0,
+            "char_end": 932,
+            "score": 2.096123456954956,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 4,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 21,
+            "char_start": 0,
+            "char_end": 936,
+            "score": 1.449547290802002,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 5,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 35,
+            "char_start": 0,
+            "char_end": 977,
+            "score": 1.3758704662322998,
+            "relevance_grade": 0
+          }
+        ]
+      },
+      {
+        "id": "nist-14",
+        "question": "What are the four functions of the AI RMF Core, and how is governance positioned among them?",
+        "recall_at_k": 1.0,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 1.0,
+        "top1_accuracy": 1.0,
+        "latency_seconds": 11.999794499992277,
+        "first_relevant_rank": 1,
+        "ranked_results": [
+          {
+            "rank": 1,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 25,
+            "char_start": 0,
+            "char_end": 833,
+            "score": 7.132104873657227,
+            "relevance_grade": 2
+          },
+          {
+            "rank": 2,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 25,
+            "char_start": 683,
+            "char_end": 1286,
+            "score": 5.836853504180908,
+            "relevance_grade": 1
+          },
+          {
+            "rank": 3,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 8,
+            "char_start": 0,
+            "char_end": 873,
+            "score": 5.3319501876831055,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 4,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 27,
+            "char_start": 0,
+            "char_end": 975,
+            "score": 3.489302635192871,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 5,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 26,
+            "char_start": 622,
+            "char_end": 1585,
+            "score": 3.2763302326202393,
+            "relevance_grade": 0
+          }
+        ]
+      },
+      {
+        "id": "nist-15",
+        "question": "Why is GOVERN described as a cross-cutting AI RMF function?",
+        "recall_at_k": 1.0,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 1.0,
+        "top1_accuracy": 1.0,
+        "latency_seconds": 12.121641800011275,
+        "first_relevant_rank": 1,
+        "ranked_results": [
+          {
+            "rank": 1,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 27,
+            "char_start": 0,
+            "char_end": 975,
+            "score": 6.297876358032227,
+            "relevance_grade": 2
+          },
+          {
+            "rank": 2,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 25,
+            "char_start": 683,
+            "char_end": 1286,
+            "score": 5.533139228820801,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 3,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 25,
+            "char_start": 0,
+            "char_end": 833,
+            "score": 4.371736526489258,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 4,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 46,
+            "char_start": 0,
+            "char_end": 968,
+            "score": 3.6932835578918457,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 5,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 27,
+            "char_start": 825,
+            "char_end": 1609,
+            "score": 3.275393486022949,
+            "relevance_grade": 0
+          }
+        ]
+      },
+      {
+        "id": "nist-16",
+        "question": "What is the purpose of the MAP function in AI risk management?",
+        "recall_at_k": 0.5,
+        "mrr_at_k": 0.3333333333333333,
+        "ndcg_at_k": 0.41311732856427996,
+        "top1_accuracy": 0.0,
+        "latency_seconds": 11.424229299998842,
+        "first_relevant_rank": 3,
+        "ranked_results": [
+          {
+            "rank": 1,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 30,
+            "char_start": 0,
+            "char_end": 866,
+            "score": 8.453039169311523,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 2,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 30,
+            "char_start": 2384,
+            "char_end": 2759,
+            "score": 8.288688659667969,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 3,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 30,
+            "char_start": 716,
+            "char_end": 1692,
+            "score": 7.227210521697998,
+            "relevance_grade": 2
+          },
+          {
+            "rank": 4,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 36,
+            "char_start": 1613,
+            "char_end": 2499,
+            "score": 7.12386417388916,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 5,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 29,
+            "char_start": 1524,
+            "char_end": 2497,
+            "score": 6.543930530548096,
+            "relevance_grade": 0
+          }
+        ]
+      },
+      {
+        "id": "nist-17",
+        "question": "What does the MEASURE function do with AI risk methods and metrics?",
+        "recall_at_k": 1.0,
+        "mrr_at_k": 0.3333333333333333,
+        "ndcg_at_k": 0.5,
+        "top1_accuracy": 0.0,
+        "latency_seconds": 13.300177600001916,
+        "first_relevant_rank": 3,
+        "ranked_results": [
+          {
+            "rank": 1,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 33,
+            "char_start": 692,
+            "char_end": 1647,
+            "score": 7.23622989654541,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 2,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 33,
+            "char_start": 2287,
+            "char_end": 2777,
+            "score": 6.2953362464904785,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 3,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 34,
+            "char_start": 0,
+            "char_end": 932,
+            "score": 5.804435729980469,
+            "relevance_grade": 2
+          },
+          {
+            "rank": 4,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 33,
+            "char_start": 0,
+            "char_end": 842,
+            "score": 5.380197525024414,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 5,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 10,
+            "char_start": 572,
+            "char_end": 1519,
+            "score": 5.346774101257324,
+            "relevance_grade": 0
+          }
+        ]
+      },
+      {
+        "id": "nist-18",
+        "question": "How does MANAGE address assessed risks and continue risk treatment after deployment?",
+        "recall_at_k": 0.5,
+        "mrr_at_k": 0.25,
+        "ndcg_at_k": 0.11861329943102608,
+        "top1_accuracy": 0.0,
+        "latency_seconds": 11.478662599998643,
+        "first_relevant_rank": 4,
+        "ranked_results": [
+          {
+            "rank": 1,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 36,
+            "char_start": 1613,
+            "char_end": 2499,
+            "score": 3.6589508056640625,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 2,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 13,
+            "char_start": 821,
+            "char_end": 1780,
+            "score": 2.7441325187683105,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 3,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 12,
+            "char_start": 2310,
+            "char_end": 2963,
+            "score": 0.3355863094329834,
+            "relevance_grade": 0
+          },
+          {
+            "rank": 4,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 38,
+            "char_start": 0,
+            "char_end": 973,
+            "score": -0.09820064157247543,
+            "relevance_grade": 1
+          },
+          {
+            "rank": 5,
+            "pdf": "NIST.AI.100-1.pdf.pdf",
+            "page": 13,
+            "char_start": 0,
+            "char_end": 970,
+            "score": -0.5949872136116028,
+            "relevance_grade": 0
+          }
+        ]
+      }
+    ]
+  }
+}

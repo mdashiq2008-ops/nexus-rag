@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+
+# Local databases and environment
+*.sqlite3
+*.sqlite
+.env
+.env.*
+
+# Frontend build and dependencies
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
