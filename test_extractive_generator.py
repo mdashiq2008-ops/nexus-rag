@@ -7,6 +7,27 @@ from extractive_generator import ExtractiveAnswerGenerator
 
 
 class ExtractiveAnswerGeneratorTests(unittest.TestCase):
+    def test_selects_exact_currency_line_for_statement_question(self) -> None:
+        generator = ExtractiveAnswerGenerator("What is the opening balance?")
+        prompt = (
+            "Question:\nWhat is the opening balance?\n\nPassages:\n"
+            "[P1]\nAccount holder Sam\n"
+            "Address 7 Example Avenue  Opening balance   ₹48,230.55\n"
+            "Every row follows the closing balance."
+        )
+
+        response = json.loads(generator(prompt))
+
+        self.assertEqual(
+            response["statements"],
+            [
+                {
+                    "text": "Address 7 Example Avenue Opening balance ₹48,230.55",
+                    "passage_id": "P1",
+                }
+            ],
+        )
+
     def test_selects_a_verbatim_relevant_sentence(self) -> None:
         generator = ExtractiveAnswerGenerator(
             "What are the four functions in the framework?"

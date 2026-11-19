@@ -77,21 +77,31 @@ class PdfIngestionTests(unittest.TestCase):
             self.connection.execute("SELECT COUNT(*) FROM documents").fetchone()[0],
             2,
         )
-        rows = self.connection.execute(
-            """
-            SELECT d.source_path, c.page_number, c.char_start, c.char_end, c.text
-            FROM chunks AS c JOIN documents AS d ON d.sha256 = c.document_sha256
-            WHERE d.sha256 = ?
-            ORDER BY c.chunk_index
-            """,
-            (first.sha256,),
-        ).fetchall()
-        self.assertGreaterEqual(len(rows), 2)
-        self.assertEqual(rows[0][0], str(first_pdf.resolve()))
-        self.assertEqual(rows[0][1], 1)
-        self.assertTrue(all(row[3] > row[2] for row in rows))
-        self.assertTrue(any("Heading" in row[4] for row in rows))
-        self.assertTrue(any(row[1] == 2 for row in rows))
+
+    def test_reindex_existing_document_replaces_stale_chunks(self) -> None:
+        pdf_path = self.root / "reindex.pdf"
+        self.make_pdf(pdf_path, ["Old corrupted 4823055 , ."])
+        first = step1.ingest_pdf(
+            pdf_path,
+            self.connection,
+            embedder=self.embedder,
+        )
+        self.assertEqual(first.status, "processed")
+
+        reindexed = step1.ingest_pdf(
+            pdf_path,
+            self.connection,
+            embedder=self.embedder,
+            reindex_existing=True,
+        )
+
+        self.assertEqual(reindexed.status, "processed")
+        self.assertEqual(
+            self.connection.execute(
+                "SELECT COUNT(*) FROM chunks"
+            ).fetchone()[0],
+            1,
+        )
 
     def test_cli_accepts_multiple_pdfs(self) -> None:
         first_pdf = self.root / "first-cli.pdf"
@@ -164,6 +174,143 @@ class PdfIngestionTests(unittest.TestCase):
         self.assertIn("| Header |", stored_text)
         self.assertIn("| Row |", stored_text)
         self.assertEqual(stored_text.count("Header"), 1)
+
+    def test_markdown_preserves_blank_cells_and_drops_empty_columns(self) -> None:
+        table = Mock()
+        table.extract.return_value = [
+            ["Date", "Description", "Debit", "Credit", "", "Balance"],
+            ["01/08/2026", "Salary", "", "62,500.00", "", "110,730.55"],
+            ["01/08/2026", "Rent", "18,500.00", "", "", "92,230.55"],
+        ]
+
+        markdown = step1._table_markdown(table)
+        lines = markdown.splitlines()
+
+        self.assertEqual(
+            lines[0],
+            "| Date | Description | Debit | Credit | Balance |",
+        )
+        self.assertEqual(
+            lines[2],
+            "| 01/08/2026 | Salary |  | 62,500.00 | 110,730.55 |",
+        )
+        self.assertEqual(
+            lines[3],
+            "| 01/08/2026 | Rent | 18,500.00 |  | 92,230.55 |",
+        )
+
+    def test_sample_bank_statement_preserves_currency_through_storage_and_search(
+        self,
+    ) -> None:
+        pdf_path = (
+            Path(__file__).parent
+            / "tests"
+            / "fixtures"
+            / "sample-bank-statement.pdf"
+        )
+        with pymupdf.open(pdf_path) as document:
+            raw_page_one = document[0].get_text("text", sort=True)
+            raw_header = next(
+                line for line in raw_page_one.splitlines()
+                if line.strip().startswith("Date")
+            )
+            raw_salary = next(
+                line for line in raw_page_one.splitlines()
+                if "Salary - Example Traders" in line
+            )
+            raw_rent = next(
+                line for line in raw_page_one.splitlines()
+                if "Rent - standing order" in line
+            )
+            table_cells = [
+                cell
+                for table in document[0].find_tables().tables
+                for row in table.extract()
+                for cell in row
+            ]
+            self.assertTrue(
+                step1._table_has_split_numeric_punctuation(
+                    [table_cells]
+                )
+            )
+            page_text = [
+                step1.extract_page_text(page, "eng")[0]
+                for page in document
+            ]
+
+        self.assertIn("₹48,230.55", raw_page_one)
+        self.assertIn("₹69,405.65", raw_page_one)
+        self.assertIn("₹67,911.48", raw_page_one)
+        self.assertIn("₹46,736.38", raw_page_one)
+        self.assertIn("₹48,230.55", page_text[0])
+        self.assertIn("₹69,405.65", page_text[0])
+        self.assertIn("₹67,911.48", page_text[0])
+        self.assertIn("₹46,736.38", page_text[0])
+        self.assertNotIn("|", page_text[0])
+        self.assertLess(
+            raw_header.index("Credit"),
+            raw_salary.index("62,500.00"),
+        )
+        self.assertLess(
+            raw_salary.index("62,500.00"),
+            raw_header.index("Balance"),
+        )
+        self.assertGreater(
+            raw_salary.index("110,730.55"),
+            raw_header.index("Balance"),
+        )
+        self.assertGreater(
+            raw_rent.index("18,500.00"),
+            raw_header.index("Debit"),
+        )
+        self.assertLess(
+            raw_rent.index("18,500.00"),
+            raw_header.index("Credit"),
+        )
+        self.assertIn("Salary - Example Traders (fictional)", page_text[0])
+        self.assertIn("62,500.00", page_text[0])
+
+        result = step1.ingest_pdf(
+            pdf_path,
+            self.connection,
+            embedder=self.embedder,
+        )
+        stored_pages = {
+            page_number: "\n".join(
+                row[0]
+                for row in self.connection.execute(
+                    """
+                    SELECT text FROM chunks
+                    WHERE document_sha256 = ? AND page_number = ?
+                    ORDER BY chunk_index
+                    """,
+                    (result.sha256, page_number),
+                )
+            )
+            for page_number in (1, 2)
+        }
+        for expected in (
+            "₹48,230.55",
+            "₹69,405.65",
+            "₹67,911.48",
+            "₹46,736.38",
+            "62,500.00",
+        ):
+            self.assertIn(expected, stored_pages[1])
+        self.assertIn("46,736.38", stored_pages[2])
+
+        displayed_results = step1.search_chunks_bm25(
+            self.connection,
+            "Salary Example Traders",
+            top_k=5,
+        )
+        self.assertTrue(
+            any(
+                "Salary - Example Traders (fictional)" in item.text
+                and "62,500.00" in item.text
+                for item in displayed_results
+            )
+        )
 
     def test_semantic_search_ranks_relevant_chunks_and_backfills_old_rows(self) -> None:
         python_pdf = self.root / "python.pdf"

@@ -246,7 +246,10 @@ def _find_tesseract() -> str | None:
 
 
 def _table_markdown(table: pymupdf.table.Table) -> str:
-    rows = table.extract()
+    return _table_markdown_from_rows(table.extract())
+
+
+def _table_markdown_from_rows(rows: list[list[str | None]]) -> str:
     if not rows:
         return ""
 
@@ -264,6 +267,15 @@ def _table_markdown(table: pymupdf.table.Table) -> str:
     formatted_rows = [
         row + [""] * (column_count - len(row)) for row in formatted_rows
     ]
+    nonempty_columns = [
+        index
+        for index in range(column_count)
+        if any(row[index] for row in formatted_rows)
+    ]
+    formatted_rows = [
+        [row[index] for index in nonempty_columns] for row in formatted_rows
+    ]
+    column_count = len(nonempty_columns)
     header = formatted_rows[0]
     separator = ["---"] * column_count
     body = formatted_rows[1:]
@@ -276,39 +288,78 @@ def _table_markdown(table: pymupdf.table.Table) -> str:
     )
 
 
+def _table_has_split_numeric_punctuation(
+    rows: list[list[str | None]],
+) -> bool:
+    for row in rows:
+        for cell in row:
+            tokens = (cell or "").split()
+            previous = ""
+            for token in tokens:
+                if token in {",", "."}:
+                    return True
+                if (
+                    token.startswith((",", "."))
+                    and token[1:].isdigit()
+                    and previous
+                    and previous[-1].isdigit()
+                ):
+                    return True
+                previous = token
+    return False
+
+
+def _preserve_page_layout(text: str) -> str:
+    text = (
+        text.replace("\u00ad", "")
+        .replace("\u00a0", " ")
+        .replace("\ufffd", "•")
+    )
+    text = re.sub(r"[\x00-\x08\x0b\x0c\x0e-\x1f\x7f]", "", text)
+    return "\n".join(line.rstrip() for line in text.splitlines()).strip("\n")
+
+
 def extract_page_text(
     page: pymupdf.Page, ocr_language: str
 ) -> tuple[str, bool]:
     tables = page.find_tables().tables
-    table_regions = [tuple(table.bbox) for table in tables]
-    content: list[tuple[float, float, str]] = []
+    extracted_tables = [table.extract() for table in tables]
+    malformed_table = any(
+        _table_has_split_numeric_punctuation(rows) for rows in extracted_tables
+    )
+    if malformed_table:
+        raw_page_text = page.get_text("text", sort=True)
+        text = _preserve_page_layout(raw_page_text)
+    else:
+        table_regions = [tuple(table.bbox) for table in tables]
+        content: list[tuple[float, float, str]] = []
 
-    for block in page.get_text("blocks", sort=True):
-        x0, y0, x1, y1, block_text = block[:5]
-        if any(
-            tx0 <= (x0 + x1) / 2 <= tx1
-            and ty0 <= (y0 + y1) / 2 <= ty1
-            for tx0, ty0, tx1, ty1 in table_regions
-        ):
-            continue
-        cleaned_block = clean_text(block_text)
-        if cleaned_block:
-            content.append((y0, x0, cleaned_block))
+        for block in page.get_text("blocks", sort=True):
+            x0, y0, x1, y1, block_text = block[:5]
+            if any(
+                tx0 <= (x0 + x1) / 2 <= tx1
+                and ty0 <= (y0 + y1) / 2 <= ty1
+                for tx0, ty0, tx1, ty1 in table_regions
+            ):
+                continue
+            cleaned_block = clean_text(block_text)
+            if cleaned_block:
+                content.append((y0, x0, cleaned_block))
 
-    for table in tables:
-        x0, y0, x1, y1 = table.bbox
-        markdown = _table_markdown(table)
-        if markdown:
-            content.append((y0, x0, markdown))
+        for table, rows in zip(tables, extracted_tables):
+            x0, y0, _, _ = table.bbox
+            markdown = _table_markdown_from_rows(rows)
+            if markdown:
+                content.append((y0, x0, markdown))
 
-    text = clean_text(
-        "\n\n".join(
-            value
-            for _, _, value in sorted(
-                content, key=lambda item: (item[0], item[1])
+        text = clean_text(
+            "\n\n".join(
+                value
+                for _, _, value in sorted(
+                    content, key=lambda item: (item[0], item[1])
+                )
             )
         )
-    )
     needs_ocr = (
         len(re.sub(r"\s+", "", text)) < OCR_TEXT_THRESHOLD
         and bool(page.get_images(full=True))
@@ -763,6 +814,7 @@ def ingest_pdf(
     chunk_overlap: int = 150,
     ocr_language: str = "eng",
     embedder: Embedder | None = None,
+    reindex_existing: bool = False,
 ) -> IngestResult:
     if pdf_path.suffix.lower() != ".pdf":
         raise ValueError(f"Not a PDF file: {pdf_path}")
@@ -775,7 +827,7 @@ def ingest_pdf(
     existing = connection.execute(
         "SELECT page_count FROM documents WHERE sha256 = ?", (digest,)
     ).fetchone()
-    if existing is not None:
+    if existing is not None and not reindex_existing:
         return IngestResult("duplicate", digest, existing[0], 0)
 
     with pymupdf.open(pdf_path) as document:
@@ -812,9 +864,14 @@ def ingest_pdf(
         existing = connection.execute(
             "SELECT page_count FROM documents WHERE sha256 = ?", (digest,)
         ).fetchone()
-        if existing is not None:
+        if existing is not None and not reindex_existing:
             connection.rollback()
             return IngestResult("duplicate", digest, existing[0], 0)
+        if existing is not None:
+            connection.execute(
+                "DELETE FROM documents WHERE sha256 = ?",
+                (digest,),
+            )
         connection.execute(
             """
             INSERT INTO documents (sha256, filename, source_path, page_count)

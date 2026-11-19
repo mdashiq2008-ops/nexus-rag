@@ -107,8 +107,28 @@ def ingest_uploaded_pdf(
         "SELECT page_count FROM documents WHERE sha256 = ?",
         (digest,),
     ).fetchone()
-    if existing is not None:
+    corrupt_chunk_rows = (
+        connection.execute(
+        """
+        SELECT text
+        FROM chunks
+        WHERE document_sha256 = ?
+        """,
+        (digest,),
+        ).fetchall()
+        if existing is not None
+        else []
+    )
+    corrupt_chunks_exist = any(
+        re.search(r"\d+\s+\.\s*\d*|\d+\s*,\s*\d*", text)
+        for (text,) in corrupt_chunk_rows
+    )
+    if existing is not None and not corrupt_chunks_exist:
         return step1.IngestResult("duplicate", digest, existing[0], 0)
+    existing = connection.execute(
+        "SELECT page_count FROM documents WHERE sha256 = ?",
+        (digest,),
+    ).fetchone()
 
     uploads_directory.mkdir(parents=True, exist_ok=True)
     destination = uploads_directory / f"{digest}_{filename}"
@@ -142,7 +162,15 @@ def ingest_uploaded_pdf(
             connection,
             embedder=embedder,
             filename=filename,
+            reindex_existing=existing is not None,
         )
+        if existing is not None and result.status == "processed":
+            return step1.IngestResult(
+                "duplicate",
+                result.sha256,
+                result.pages,
+                result.chunks,
+            )
         if result.status == "duplicate" and created_destination:
             destination.unlink()
             created_destination = False
