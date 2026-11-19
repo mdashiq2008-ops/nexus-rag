@@ -118,7 +118,16 @@ type StatusResponse = {
 type WorkspaceView = 'workspace' | 'library' | 'settings'
 
 async function requestJson<T>(url: string, init?: RequestInit): Promise<T> {
-  const response = await fetch(url, init)
+  let response: Response
+  try {
+    response = await fetch(url, init)
+  } catch (fetchError) {
+    throw new Error(
+      fetchError instanceof Error
+        ? `Unable to reach NEXUS at http://127.0.0.1:8000 (${fetchError.message}). Start the backend with: python -m uvicorn api:app --host 127.0.0.1 --port 8000`
+        : 'Unable to reach the local NEXUS backend.',
+    )
+  }
   if (!response.ok) {
     let message = `Request failed (${response.status})`
     try {
@@ -213,6 +222,13 @@ function App() {
   }, [])
 
   useEffect(() => {
+    const interval = window.setInterval(() => {
+      void refreshDocuments()
+    }, 30000)
+    return () => window.clearInterval(interval)
+  }, [refreshDocuments])
+
+  useEffect(() => {
     messagesEnd.current?.scrollIntoView({
       behavior: messages.length > 1 ? 'smooth' : 'auto',
     })
@@ -220,8 +236,10 @@ function App() {
 
   async function handleUpload(event: FormEvent<HTMLInputElement>) {
     const files = event.currentTarget.files
+      ? Array.from(event.currentTarget.files)
+      : []
     event.currentTarget.value = ''
-    if (!files) return
+    if (files.length === 0) return
     await handleDroppedFiles(files)
   }
 
@@ -257,7 +275,7 @@ function App() {
     }
   }
 
-  async function handleDroppedFiles(files: FileList | null) {
+  async function handleDroppedFiles(files: FileList | File[] | null) {
     if (!files || files.length === 0) return
     for (const file of Array.from(files)) {
       await uploadFile(file)

@@ -435,6 +435,11 @@ def create_app(
             )
         if not content:
             raise HTTPException(status_code=400, detail="Uploaded PDF is empty")
+        if not content.lstrip().startswith(b"%PDF-"):
+            raise HTTPException(
+                status_code=415,
+                detail="The selected file is not a valid PDF",
+            )
         try:
             result = await run_in_threadpool(index_upload, filename, content)
             with closing(open_database(database_path)) as connection:

@@ -38,6 +38,12 @@ npm.cmd run dev -- --host 127.0.0.1 --port 5173
 Open `http://127.0.0.1:5173/`. The backend API is available only on
 `127.0.0.1:8000`.
 
+After installation, Windows users can start both services with:
+
+```powershell
+.\start-nexus.bat
+```
+
 ### Example questions
 
 - "What are the three stages of RAG?"

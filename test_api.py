@@ -139,6 +139,14 @@ class ApiTests(unittest.TestCase):
         self.assertTrue(delete.json()["uploaded_file_deleted"])
         self.assertEqual(self.client.get("/api/documents").json(), [])
 
+    def test_rejects_non_pdf_content(self) -> None:
+        response = self.client.post(
+            "/api/documents",
+            files={"file": ("notes.pdf", b"not a PDF", "application/pdf")},
+        )
+        self.assertEqual(response.status_code, 415)
+        self.assertIn("valid PDF", response.json()["detail"])
+
     def test_chat_returns_traceable_extractive_answer_and_search_mode(self) -> None:
         expected = self.make_answer()
         with patch("api.run_rag_pipeline", return_value=expected) as run_pipeline:
